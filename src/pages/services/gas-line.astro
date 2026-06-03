@@ -1,0 +1,176 @@
+---
+import { Image } from 'astro:assets';
+import serviceHero from '../../assets/hero-placeholder.jpg';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import BeforeAfterSlider from '../../components/islands/BeforeAfterSlider';
+import FAQAccordion from '../../components/islands/FAQAccordion';
+import ContactForm from '../../components/islands/ContactForm';
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews');
+const reviewQuote = reviews.find((r) => r.data.rating >= 5);
+
+const faqs = [
+  {
+    question: 'Is gas line work dangerous?',
+    answer:
+      'Yes, gas line work is hazardous and should only be performed by a licensed professional. We are fully licensed and insured for all gas line work in Chicago. Never attempt gas line repairs yourself.',
+  },
+  {
+    question: 'How do I know if I have a gas leak?',
+    answer:
+      'The most common sign is the smell of rotten eggs (natural gas is odorized for detection). You may also hear a hissing sound near gas lines, see dead vegetation along pipe routes, or notice higher gas bills.',
+  },
+  {
+    question: 'What should I do if I smell gas?',
+    answer:
+      'Leave the building immediately. Do not use any electrical switches, phones, or appliances. Call 911 from outside, then call the gas company and Sandoval Plumbing for emergency repair.',
+  },
+  {
+    question: 'What is gas bonding and do I need it?',
+    answer:
+      "Gas bonding is the electrical grounding of your gas piping system. It's required by Chicago code to prevent electrical hazards. We can inspect your current bonding and install it if needed.",
+  },
+  {
+    question: 'Can you install a gas line for my new stove or dryer?',
+    answer:
+      'Yes! We install new gas lines for stoves, dryers, furnaces, water heaters, outdoor grills, and fire pits. We handle all permits and inspections required by the City of Chicago.',
+  },
+];
+---
+
+<ServiceLayout
+  title="Gas Line Services in Chicago, IL | Sandoval Plumbing"
+  description="Gas line repair, installation, and bonding in Chicago. Licensed and insured. Emergency gas line service available 24/7. Call (773) 610-3344."
+  serviceName="Gas Line Services"
+>
+  {/* Hero image */}
+  <div class="relative h-56 md:h-72 rounded-xl overflow-hidden mb-8">
+    <Image
+      src={serviceHero}
+      alt="Gas line services by Sandoval Plumbing in Chicago"
+      width={800}
+      height={400}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute bottom-4 left-6 text-white">
+      <p class="text-sm font-semibold opacity-80">Gas Line Services</p>
+    </div>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue mb-6">
+    Gas Line Services in Chicago
+  </h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    Gas line work requires a licensed, insured professional. Sandoval Plumbing is fully licensed for
+    gas line installation, repair, and bonding in Chicago. We follow all safety protocols and city
+    codes to ensure your gas system is safe and reliable.
+  </p>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">
+    Signs You Need Gas Line Service
+  </h2>
+  <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-8">
+    <li>Smell of natural gas (rotten egg odor)</li>
+    <li>Hissing sound near gas lines or appliances</li>
+    <li>Dead vegetation near gas pipe routes</li>
+    <li>Higher gas bills without increased usage</li>
+    <li>Carbon monoxide detector alerts</li>
+    <li>Gas appliances not working properly</li>
+  </ul>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">What We Do</h2>
+  <ol class="list-decimal pl-6 space-y-3 text-gray-600 mb-8">
+    <li>
+      <strong class="text-brand-blue">Inspect:</strong> We check your entire gas system for leaks, corrosion,
+      and code compliance.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Repair:</strong> Emergency repair of damaged, leaking, or corroded
+      gas lines.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Install:</strong> New gas line installation for appliances and equipment.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Certify:</strong> We test and certify all work to meet Chicago code
+      requirements.
+    </li>
+  </ol>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Why Choose Sandoval</h2>
+  <ul class="space-y-2 text-gray-600 mb-8">
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Licensed and insured for all gas work in Chicago</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Emergency gas line service — available 24/7</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>All work permitted and inspected per Chicago code</span>
+    </li>
+  </ul>
+
+  <div class="mb-8">
+    <BeforeAfterSlider
+      client:visible
+      beforeImage="https://picsum.photos/seed/gas-before/800/600"
+      afterImage="https://picsum.photos/seed/gas-after/800/600"
+    />
+  </div>
+
+  {/* Related review quote */}
+  {
+    reviewQuote && (
+      <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl shrink-0" aria-hidden="true">
+            ⭐
+          </span>
+          <div>
+            <p class="text-gray-600 italic leading-relaxed mb-3">
+              &ldquo;{reviewQuote.body}&rdquo;
+            </p>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm text-brand-blue">
+                — {reviewQuote.data.reviewer}
+              </span>
+              <span
+                class="text-yellow-400 text-sm"
+                aria-label={`${reviewQuote.data.rating} out of 5 stars`}
+              >
+                {'★'.repeat(reviewQuote.data.rating)}
+              </span>
+              <span class="text-xs text-gray-400">
+                {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
+              </span>
+              {reviewQuote.data.verified && (
+                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="mb-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
+    <FAQAccordion client:visible faqs={faqs} />
+  </div>
+
+  <div class="bg-brand-lightgray rounded-xl p-6 md:p-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Request a Free Estimate</h2>
+    <ContactForm client:visible />
+  </div>
+</ServiceLayout>
