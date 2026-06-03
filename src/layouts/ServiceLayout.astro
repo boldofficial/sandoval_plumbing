@@ -1,0 +1,87 @@
+---
+import PageLayout from './PageLayout.astro';
+import EmergencyCTA from '../components/ui/EmergencyCTA.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  schema?: object;
+  lang?: 'en' | 'es';
+  serviceName: string;
+}
+
+const { serviceName, ...layoutProps } = Astro.props;
+---
+
+<PageLayout {...layoutProps}>
+  <div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Main content area */}
+      <div class="lg:col-span-2">
+        <slot />
+      </div>
+
+      {/* Sidebar */}
+      <aside class="space-y-8">
+        {/* Emergency CTA */}
+        <EmergencyCTA compact />
+
+        {/* Trust badges */}
+        <div class="bg-brand-lightgray rounded-xl p-6">
+          <h3 class="font-heading font-bold text-brand-blue text-lg mb-4">Why Choose Sandoval</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <span>Licensed &amp; Insured in Illinois</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <span>24/7 Emergency Service — Every Day</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <span>Family-Owned 25+ Years</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <span>Free Estimates &amp; Fair Pricing</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <span>4.9 Stars &middot; 300+ Google Reviews</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <span>Hispanic-Owned &middot; Servicio en Español</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact info sidebar */}
+        <div class="bg-brand-blue text-white rounded-xl p-6">
+          <h3 class="font-heading font-bold text-lg mb-3">Contact Us</h3>
+          <div class="space-y-3 text-sm">
+            <a
+              href="tel:+17736103344"
+              class="flex items-center gap-2 font-bold hover:text-brand-red transition-colors"
+            >
+              <span aria-hidden="true">📞</span>
+              (773) 610-3344
+            </a>
+            <p class="flex items-start gap-2 text-gray-200">
+              <span class="mt-0.5 shrink-0" aria-hidden="true">🕐</span>
+              <span>Open 24/7 — including weekends &amp; holidays</span>
+            </p>
+            <a
+              href="/contact"
+              class="block w-full text-center bg-white text-brand-blue font-bold py-2.5 px-4 rounded-lg hover:bg-gray-100 transition mt-4"
+            >
+              Get Free Estimate →
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</PageLayout>
