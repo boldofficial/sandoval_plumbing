@@ -1,0 +1,116 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import ServiceAreaMap from '../../components/ui/ServiceAreaMap.astro';
+import EmergencyCTA from '../../components/ui/EmergencyCTA.astro';
+
+const neighborhoods = [
+  {
+    name: 'Irving Park',
+    slug: 'irving-park',
+    zip: '60618',
+    description:
+      'Our home neighborhood. We serve Irving Park with fast, reliable plumbing service.',
+  },
+  {
+    name: 'Logan Square',
+    slug: 'logan-square',
+    zip: '60647',
+    description: 'Serving Logan Square homes and businesses with full plumbing services.',
+  },
+  {
+    name: 'Avondale',
+    slug: 'avondale',
+    zip: '60618',
+    description: 'Avondale plumbing service — available 24/7 for emergencies.',
+  },
+  {
+    name: 'Roscoe Village',
+    slug: 'roscoe-village',
+    zip: '60618',
+    description: 'Roscoe Village homeowners trust Sandoval for fair, honest plumbing.',
+  },
+  {
+    name: 'Lakeview',
+    slug: 'lakeview',
+    zip: '60613',
+    description: 'Lakeview plumbing — residential and commercial service.',
+  },
+];
+---
+
+<PageLayout
+  title="Service Areas — Sandoval Plumbing | Chicago Neighborhoods"
+  description="Sandoval Plumbing serves Irving Park, Logan Square, Avondale, Roscoe Village, Wicker Park, Bucktown, Lakeview, and all of Chicagoland. Call (773) 610-3344."
+>
+  <section class="py-16 md:py-24 bg-gradient-to-br from-brand-blue/5 to-brand-lightgray">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-heading font-bold text-brand-blue text-center mb-4">
+        Areas We Serve
+      </h1>
+      <p class="text-gray-600 text-center text-lg max-w-2xl mx-auto mb-12">
+        Based in Irving Park, we provide plumbing service to Chicago and the surrounding suburbs.
+        We're minutes away from most Chicago neighborhoods.
+      </p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <ServiceAreaMap />
+        <div>
+          <h2 class="text-2xl font-heading font-bold text-brand-blue mb-6">
+            Chicago Neighborhoods
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {
+              neighborhoods.map((hood) => (
+                <a
+                  key={hood.slug}
+                  href={`/service-areas/${hood.slug}`}
+                  class="block bg-white rounded-xl p-5 border border-gray-100 shadow-sm hover:shadow-md hover:border-brand-blue/30 transition-all group"
+                >
+                  <h3 class="font-heading font-bold text-brand-blue group-hover:text-brand-red transition-colors">
+                    {hood.name}
+                  </h3>
+                  <p class="text-xs text-gray-400 mt-1">ZIP: {hood.zip}</p>
+                  <p class="text-sm text-gray-500 mt-2">{hood.description}</p>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-brand-blue text-white rounded-2xl p-8 md:p-12">
+        <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">And All of Chicagoland</h2>
+        <p class="text-gray-300 mb-4">
+          Wicker Park, Bucktown, Lincoln Square, North Center, Belmont-Cragin, Hermosa, Portage
+          Park, and beyond. If you're in the Chicago area, we'll come to you.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          {
+            [
+              'Wicker Park',
+              'Bucktown',
+              'Lincoln Square',
+              'North Center',
+              'Belmont-Cragin',
+              'Hermosa',
+              'Portage Park',
+              'Lincoln Park',
+              'Humboldt Park',
+              'Edgewater',
+              'Uptown',
+              'West Town',
+            ].map((hood) => (
+              <span class="bg-white/10 text-gray-300 text-sm px-3 py-1 rounded-full">{hood}</span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <EmergencyCTA />
+    </div>
+  </section>
+</PageLayout>
