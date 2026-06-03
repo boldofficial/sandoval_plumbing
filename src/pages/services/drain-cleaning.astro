@@ -1,0 +1,182 @@
+---
+import { Image } from 'astro:assets';
+import serviceHero from '../../assets/hero-placeholder.jpg';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import BeforeAfterSlider from '../../components/islands/BeforeAfterSlider';
+import FAQAccordion from '../../components/islands/FAQAccordion';
+import ContactForm from '../../components/islands/ContactForm';
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews');
+const reviewQuote = reviews.find((r) => r.data.rating >= 5);
+
+const faqs = [
+  {
+    question: "What's the difference between hydro-jetting and rodding?",
+    answer:
+      'Rodding (snaking) uses a mechanical auger to break through clogs — effective for toilet clogs and local stoppages. Hydro-jetting uses high-pressure water (up to 4,000 PSI) to scour the entire pipe interior — better for grease buildup, scale, and tree roots.',
+  },
+  {
+    question: 'How often should I have my drains cleaned?',
+    answer:
+      'We recommend annual drain cleaning for most Chicago homes. If you have frequent clogs, older pipes, or large trees near your sewer line, twice a year may be necessary.',
+  },
+  {
+    question: 'Do you offer drain cleaning for commercial properties?',
+    answer:
+      'Yes, we provide drain cleaning for both residential and commercial properties, including restaurants, office buildings, and multi-unit residences.',
+  },
+  {
+    question: 'Will drain cleaning fix my slow-draining kitchen sink?',
+    answer:
+      "In most cases, yes. Kitchen sink clogs are usually caused by grease buildup, which hydro-jetting removes effectively. If the problem persists, we'll do a camera inspection to check for deeper issues.",
+  },
+  {
+    question: 'Does drain cleaning prevent future clogs?',
+    answer:
+      'Yes! Hydro-jetting not only removes existing clogs but also cleans the pipe walls, making it harder for future buildup to accumulate. Regular maintenance is the best prevention.',
+  },
+];
+---
+
+<ServiceLayout
+  title="Drain Cleaning in Chicago, IL | Sandoval Plumbing"
+  description="Professional drain cleaning in Chicago. Hydro-jetting, rodding, and camera inspection. Fast, reliable service for residential and commercial. Call (773) 610-3344."
+  serviceName="Drain Cleaning"
+>
+  {/* Hero image */}
+  <div class="relative h-56 md:h-72 rounded-xl overflow-hidden mb-8">
+    <Image
+      src={serviceHero}
+      alt="Drain cleaning service by Sandoval Plumbing in Chicago"
+      width={800}
+      height={400}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute bottom-4 left-6 text-white">
+      <p class="text-sm font-semibold opacity-80">Drain Cleaning</p>
+    </div>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue mb-6">
+    Drain Cleaning in Chicago, IL
+  </h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    Slow or clogged drains are more than an inconvenience — they can lead to backups, water damage,
+    and health hazards. Sandoval Plumbing offers professional drain cleaning for Chicago homes and
+    businesses. We use the latest technology to clear clogs fast and prevent them from coming back.
+  </p>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">
+    Signs You Need Drain Cleaning
+  </h2>
+  <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-8">
+    <li>Water draining slowly in sinks, tubs, or showers</li>
+    <li>Gurgling sounds coming from drains</li>
+    <li>Foul odors emanating from drains</li>
+    <li>Water backing up when you run appliances</li>
+    <li>Multiple drains clogged simultaneously</li>
+    <li>Frequent toilet clogs</li>
+  </ul>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">What We Do</h2>
+  <ol class="list-decimal pl-6 space-y-3 text-gray-600 mb-8">
+    <li>
+      <strong class="text-brand-blue">Inspect:</strong> Camera inspection to identify the exact cause
+      and location of the clog.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Clear:</strong> Hydro-jetting or motorized rodding to remove the
+      blockage completely.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Verify:</strong> Final camera inspection to confirm the line is
+      clear and flowing properly.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Advise:</strong> Recommendations to prevent future clogs and maintain
+      healthy drains.
+    </li>
+  </ol>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Why Choose Sandoval</h2>
+  <ul class="space-y-2 text-gray-600 mb-8">
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Advanced camera inspection — no guesswork</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Hydro-jetting available for stubborn clogs</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Fair, upfront pricing — no hidden fees</span>
+    </li>
+  </ul>
+
+  <div class="mb-8">
+    <BeforeAfterSlider
+      client:visible
+      beforeImage="https://picsum.photos/seed/drain-before/800/600"
+      afterImage="https://picsum.photos/seed/drain-after/800/600"
+      beforeLabel="Before Cleaning"
+      afterLabel="After Cleaning"
+    />
+  </div>
+
+  {/* Related review quote */}
+  {
+    reviewQuote && (
+      <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl shrink-0" aria-hidden="true">
+            ⭐
+          </span>
+          <div>
+            <p class="text-gray-600 italic leading-relaxed mb-3">
+              &ldquo;{reviewQuote.body}&rdquo;
+            </p>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm text-brand-blue">
+                — {reviewQuote.data.reviewer}
+              </span>
+              <span
+                class="text-yellow-400 text-sm"
+                aria-label={`${reviewQuote.data.rating} out of 5 stars`}
+              >
+                {'★'.repeat(reviewQuote.data.rating)}
+              </span>
+              <span class="text-xs text-gray-400">
+                {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
+              </span>
+              {reviewQuote.data.verified && (
+                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="mb-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
+    <FAQAccordion client:visible faqs={faqs} />
+  </div>
+
+  <div class="bg-brand-lightgray rounded-xl p-6 md:p-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Request a Free Estimate</h2>
+    <p class="text-gray-600 mb-6">
+      Need drain cleaning? Fill out the form and we'll get back to you within 60 minutes.
+    </p>
+    <ContactForm client:visible />
+  </div>
+</ServiceLayout>
