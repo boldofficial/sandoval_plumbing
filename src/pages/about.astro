@@ -1,0 +1,126 @@
+---
+import { Image } from 'astro:assets';
+import eddiePhoto from '../assets/eddie-placeholder.jpg';
+import PageLayout from '../layouts/PageLayout.astro';
+import EmergencyCTA from '../components/ui/EmergencyCTA.astro';
+import TrustBadges from '../components/ui/TrustBadges.astro';
+---
+
+<PageLayout
+  title="About Sandoval Plumbing — Chicago's Family Plumber Since 1999"
+  description="Meet Eddie Sandoval. Learn the story behind Chicago's most trusted family-owned plumbing company — 25+ years, 300+ 5-star reviews, 24/7 service."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-brand-blue/5 to-brand-lightgray py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="max-w-3xl">
+        <span class="text-brand-red font-semibold text-sm uppercase tracking-wider">About Us</span>
+        <h1
+          class="text-4xl md:text-5xl font-heading font-bold text-brand-blue mt-3 mb-6 leading-tight"
+        >
+          Chicago's Family Plumber — <span class="text-brand-red">Since 1999</span>
+        </h1>
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Sandoval Plumbing is a Hispanic-owned, family-operated plumbing company serving Chicago
+          and the surrounding suburbs. We've built our reputation on honest work, fair prices, and
+          being there when you need us most — any time, day or night.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <TrustBadges />
+
+  <!-- Eddie's Story -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="aspect-[4/5] rounded-xl overflow-hidden relative">
+          <Image
+            src={eddiePhoto}
+            alt="Eduardo 'Eddie' Sandoval, owner and lead plumber of Sandoval Plumbing — over 25 years serving Chicago"
+            width={600}
+            height={750}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-brand-blue/20 to-transparent pointer-events-none"
+            aria-hidden="true"
+          >
+          </div>
+        </div>
+        <div>
+          <h2 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue mb-6">
+            Meet Eddie Sandoval
+          </h2>
+          <div class="space-y-4 text-gray-600 leading-relaxed">
+            <p>
+              Eddie Sandoval started Sandoval Plumbing in 1999 with a simple mission: provide
+              honest, affordable plumbing service to Chicago homeowners. Over 25 years later, that
+              mission hasn't changed.
+            </p>
+            <p>
+              "I got tired of seeing people get ripped off by big plumbing companies," Eddie says.
+              "They'd charge customers thousands for work that didn't need to be done, or send
+              salespeople instead of actual plumbers. I knew there was a better way."
+            </p>
+            <p>
+              Eddie personally handles every call, every estimate, and every job. When you call
+              Sandoval Plumbing, you talk to Eddie — not a dispatcher, not a call center, not a
+              voicemail box. He'll answer your questions, give you an honest assessment, and show up
+              to do the work himself.
+            </p>
+            <p>
+              That personal touch has earned Sandoval Plumbing over 300 five-star reviews and a
+              4.9-star rating on Google — one of the highest ratings of any plumber in Chicago.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-16 md:py-20 bg-brand-lightgray">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue text-center mb-12">
+        What We Stand For
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl p-8 shadow-sm">
+          <div class="text-3xl mb-4" aria-hidden="true">🤝</div>
+          <h3 class="font-heading font-bold text-xl text-brand-blue mb-3">Honesty First</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            We'll never recommend work you don't need. Eddie explains every issue, shows you what's
+            wrong, and gives you options — not ultimatums.
+          </p>
+        </div>
+        <div class="bg-white rounded-xl p-8 shadow-sm">
+          <div class="text-3xl mb-4" aria-hidden="true">💰</div>
+          <h3 class="font-heading font-bold text-xl text-brand-blue mb-3">Fair Pricing</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Our overhead is low because we don't have a fleet of trucks, a sales team, or a
+            corporate office. Those savings go directly to you — typically 3-6x less than the big
+            guys.
+          </p>
+        </div>
+        <div class="bg-white rounded-xl p-8 shadow-sm">
+          <div class="text-3xl mb-4" aria-hidden="true">⏰</div>
+          <h3 class="font-heading font-bold text-xl text-brand-blue mb-3">Always Available</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            We're open 24/7/365 — including nights, weekends, and holidays. When you have a plumbing
+            emergency, Eddie answers the phone and shows up fast.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency CTA -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <EmergencyCTA />
+    </div>
+  </section>
+</PageLayout>
