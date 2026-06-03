@@ -1,0 +1,202 @@
+---
+import { Image } from 'astro:assets';
+import serviceHero from '../../assets/hero-placeholder.jpg';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import BeforeAfterSlider from '../../components/islands/BeforeAfterSlider';
+import FAQAccordion from '../../components/islands/FAQAccordion';
+import ContactForm from '../../components/islands/ContactForm';
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews');
+const reviewQuote = reviews.find((r) => r.data.rating >= 5);
+
+const faqs = [
+  {
+    question: 'What does preventive plumbing maintenance include?',
+    answer:
+      'We inspect every faucet, toilet, shower, and drain for leaks and wear. We check your water heater (flush tank, test pressure valve, inspect anode rod), assess exposed pipes, test your sump pump, and check drain speeds.',
+  },
+  {
+    question: 'How often should I have my plumbing inspected?',
+    answer:
+      'We recommend an annual plumbing inspection for most Chicago homes. Older homes (50+ years) or homes with original pipes may benefit from twice-yearly inspections.',
+  },
+  {
+    question: 'Does preventive maintenance really save money?',
+    answer:
+      'Yes! Catching a small leak early can save hundreds in water damage. Annual water heater maintenance extends its life by 2-3 years. Clearing slow drains prevents emergency sewer backups. Maintenance is the best investment you can make in your plumbing.',
+  },
+  {
+    question: 'What seasonal maintenance should Chicago homeowners do?',
+    answer:
+      'Spring: Check for winter pipe damage, test sump pump. Summer: Check outdoor faucets. Fall: Insulate pipes, drain hoses, service water heater. Winter: Watch for frozen pipes, know where your shut-off valve is.',
+  },
+  {
+    question: 'Do you offer maintenance plans or contracts?',
+    answer:
+      'Yes, we offer annual maintenance plans that include priority scheduling, discounted service, and reminders for seasonal maintenance tasks. Contact us for details.',
+  },
+];
+---
+
+<ServiceLayout
+  title="Preventive Plumbing Maintenance in Chicago | Sandoval Plumbing"
+  description="Plumbing preventive maintenance in Chicago. Annual inspections, drain cleaning, water heater maintenance, and seasonal tips. Call (773) 610-3344."
+  serviceName="Preventive Maintenance"
+>
+  {/* Hero image */}
+  <div class="relative h-56 md:h-72 rounded-xl overflow-hidden mb-8">
+    <Image
+      src={serviceHero}
+      alt="Plumbing maintenance by Sandoval Plumbing in Chicago"
+      width={800}
+      height={400}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute bottom-4 left-6 text-white">
+      <p class="text-sm font-semibold opacity-80">Preventive Maintenance</p>
+    </div>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue mb-6">
+    Preventive Maintenance in Chicago
+  </h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    Regular plumbing maintenance saves money, prevents emergencies, and extends the life of your
+    plumbing system. Sandoval Plumbing offers comprehensive maintenance services for Chicago
+    homeowners who want peace of mind.
+  </p>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">What We Inspect</h2>
+  <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-8">
+    <li>
+      <strong>Complete System:</strong> Every faucet, toilet, shower, and drain checked for leaks and
+      wear
+    </li>
+    <li>
+      <strong>Water Heater:</strong> Tank flush, pressure valve test, anode rod inspection, corrosion
+      check
+    </li>
+    <li><strong>Pipes:</strong> Visual inspection for leaks, corrosion, and damage</li>
+    <li>
+      <strong>Drains:</strong> Speed check to identify potential clogs before they become problems
+    </li>
+    <li><strong>Sump Pump:</strong> Operation test and backup battery check</li>
+  </ul>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">
+    Our Seasonal Maintenance Guide
+  </h2>
+  <div class="grid grid-cols-2 gap-4 mb-8">
+    <div class="bg-green-50 rounded-lg p-4">
+      <h4 class="font-heading font-bold text-green-800 text-sm mb-2">🌸 Spring</h4>
+      <ul class="text-xs text-gray-600 space-y-1">
+        <li>• Inspect for winter pipe damage</li>
+        <li>• Test sump pump</li>
+        <li>• Flush water heater</li>
+      </ul>
+    </div>
+    <div class="bg-yellow-50 rounded-lg p-4">
+      <h4 class="font-heading font-bold text-yellow-800 text-sm mb-2">☀️ Summer</h4>
+      <ul class="text-xs text-gray-600 space-y-1">
+        <li>• Check outdoor faucets</li>
+        <li>• Inspect irrigation systems</li>
+        <li>• Check for hidden leaks</li>
+      </ul>
+    </div>
+    <div class="bg-orange-50 rounded-lg p-4">
+      <h4 class="font-heading font-bold text-orange-800 text-sm mb-2">🍂 Fall</h4>
+      <ul class="text-xs text-gray-600 space-y-1">
+        <li>• Insulate exposed pipes</li>
+        <li>• Drain outdoor hoses</li>
+        <li>• Service water heater</li>
+      </ul>
+    </div>
+    <div class="bg-blue-50 rounded-lg p-4">
+      <h4 class="font-heading font-bold text-blue-800 text-sm mb-2">❄️ Winter</h4>
+      <ul class="text-xs text-gray-600 space-y-1">
+        <li>• Monitor for frozen pipes</li>
+        <li>• Check for drafts near pipes</li>
+        <li>• Know shut-off valve location</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Why Choose Sandoval</h2>
+  <ul class="space-y-2 text-gray-600 mb-8">
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Catch issues before they become expensive emergencies</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Extend the life of your water heater and fixtures</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Lower water bills by fixing hidden leaks</span>
+    </li>
+  </ul>
+
+  <div class="mb-8">
+    <BeforeAfterSlider
+      client:visible
+      beforeImage="https://picsum.photos/seed/maint-before/800/600"
+      afterImage="https://picsum.photos/seed/maint-after/800/600"
+      beforeLabel="Before Service"
+      afterLabel="After Service"
+    />
+  </div>
+
+  {/* Related review quote */}
+  {
+    reviewQuote && (
+      <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl shrink-0" aria-hidden="true">
+            ⭐
+          </span>
+          <div>
+            <p class="text-gray-600 italic leading-relaxed mb-3">
+              &ldquo;{reviewQuote.body}&rdquo;
+            </p>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm text-brand-blue">
+                — {reviewQuote.data.reviewer}
+              </span>
+              <span
+                class="text-yellow-400 text-sm"
+                aria-label={`${reviewQuote.data.rating} out of 5 stars`}
+              >
+                {'★'.repeat(reviewQuote.data.rating)}
+              </span>
+              <span class="text-xs text-gray-400">
+                {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
+              </span>
+              {reviewQuote.data.verified && (
+                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="mb-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
+    <FAQAccordion client:visible faqs={faqs} />
+  </div>
+
+  <div class="bg-brand-lightgray rounded-xl p-6 md:p-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Request a Free Estimate</h2>
+    <ContactForm client:visible />
+  </div>
+</ServiceLayout>
