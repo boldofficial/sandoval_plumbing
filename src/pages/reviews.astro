@@ -1,0 +1,89 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ReviewCard from '../components/ui/ReviewCard.astro';
+import EmergencyCTA from '../components/ui/EmergencyCTA.astro';
+import { getCollection } from 'astro:content';
+
+const reviews = (await getCollection('reviews')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<PageLayout
+  title="Reviews — Sandoval Plumbing Chicago | 300+ 5-Star Reviews"
+  description="See why over 300 Chicago homeowners trust Sandoval Plumbing. 4.9 stars on Google, 5.0 stars on Yelp. Read real reviews from our customers."
+>
+  <section class="py-16 md:py-24 bg-gradient-to-br from-brand-blue/5 to-brand-lightgray">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-heading font-bold text-brand-blue mb-4">
+          What Our Customers Say
+        </h1>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
+          We've earned over 300 five-star reviews by treating every customer like family. Here's
+          what Chicago homeowners have to say.
+        </p>
+        <div class="flex items-center justify-center gap-8 flex-wrap">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-brand-blue">4.9</div>
+            <div class="flex text-yellow-400 text-sm justify-center my-1">★★★★★</div>
+            <div class="text-xs text-gray-500">Google · 306 Reviews</div>
+          </div>
+          <div class="w-px h-12 bg-gray-200 hidden sm:block"></div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-brand-blue">5.0</div>
+            <div class="flex text-yellow-400 text-sm justify-center my-1">★★★★★</div>
+            <div class="text-xs text-gray-500">Yelp · 16 Reviews</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          reviews.map((review) => (
+            <ReviewCard
+              reviewer={review.data.reviewer}
+              rating={review.data.rating}
+              platform={review.data.platform}
+              text={review.body}
+              verified={review.data.verified}
+              date={review.data.date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+              })}
+            />
+          ))
+        }
+      </div>
+
+      <div class="text-center mt-10">
+        <p class="text-gray-500 mb-4">Want to leave a review?</p>
+        <div class="flex items-center justify-center gap-4 flex-wrap">
+          <a
+            href="https://www.google.com/maps/place/Sandoval+Plumbing"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-brand-blue text-white font-bold px-6 py-3 rounded-lg hover:opacity-90 transition"
+          >
+            Review on Google
+          </a>
+          <a
+            href="https://www.yelp.com/biz/sandoval-plumbing-chicago"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-brand-red text-white font-bold px-6 py-3 rounded-lg hover:opacity-90 transition"
+          >
+            Review on Yelp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <EmergencyCTA />
+    </div>
+  </section>
+</PageLayout>
