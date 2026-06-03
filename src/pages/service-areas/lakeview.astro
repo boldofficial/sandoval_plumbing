@@ -1,0 +1,84 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import EmergencyCTA from '../../components/ui/EmergencyCTA.astro';
+import ServiceAreaMap from '../../components/ui/ServiceAreaMap.astro';
+import ContactForm from '../../components/islands/ContactForm';
+---
+
+<PageLayout
+  title="Plumber in Lakeview, Chicago — 24/7 Service | Sandoval Plumbing"
+  description="Need a plumber in Lakeview? Sandoval Plumbing offers 24/7 emergency service to Lakeview (60613) and surrounding Chicago neighborhoods. Call (773) 610-3344."
+>
+  <section class="py-16 md:py-24 bg-gradient-to-br from-brand-blue/5 to-brand-lightgray">
+    <div class="max-w-4xl mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-heading font-bold text-brand-blue mb-6">
+        Plumber in Lakeview, Chicago
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed mb-8">
+        Lakeview is one of Chicago's most vibrant neighborhoods, and Sandoval Plumbing is proud to
+        serve its residents and businesses. From vintage courtyard buildings to new high-rises, we
+        handle all types of plumbing with the same personal attention and fair pricing.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-brand-lightgray rounded-xl p-6">
+          <h2 class="font-heading font-bold text-brand-blue text-lg mb-3">
+            Our Services in Lakeview
+          </h2>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Emergency Plumbing — 24/7
+              Response
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Drain Cleaning &amp; Hydro-Jetting
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Water Heater Repair &amp;
+              Installation
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Commercial Plumbing Services
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Sewer Line Services
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Bathroom &amp; Kitchen Plumbing
+            </li>
+          </ul>
+        </div>
+        <div class="bg-brand-blue text-white rounded-xl p-6">
+          <h2 class="font-heading font-bold text-lg mb-3">Contact Us</h2>
+          <div class="space-y-3 text-sm">
+            <a
+              href="tel:+17736103344"
+              class="flex items-center gap-2 font-bold hover:text-brand-red transition-colors"
+              ><span aria-hidden="true">📞</span> (773) 610-3344</a
+            >
+            <p class="flex items-start gap-2 text-gray-200">
+              <span class="mt-0.5" aria-hidden="true">📍</span>
+              <span>Serving Lakeview (60613) and all of Chicagoland</span>
+            </p>
+            <p class="flex items-start gap-2 text-gray-200">
+              <span class="mt-0.5" aria-hidden="true">🕐</span>
+              <span>Available 24/7 — including holidays</span>
+            </p>
+            <a
+              href="/contact"
+              class="block w-full text-center bg-white text-brand-blue font-bold py-2.5 px-4 rounded-lg hover:bg-gray-100 transition mt-4"
+              >Get Free Estimate →</a
+            >
+          </div>
+        </div>
+      </div>
+      <ServiceAreaMap />
+      <div class="mt-8"><EmergencyCTA compact /></div>
+      <div class="bg-white rounded-xl p-6 md:p-8 mt-8">
+        <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">
+          Request Service in Lakeview
+        </h2>
+        <ContactForm client:visible />
+      </div>
+    </div>
+  </section>
+</PageLayout>
