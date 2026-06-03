@@ -1,0 +1,193 @@
+---
+const neighborhoods = [
+  'Irving Park',
+  'Logan Square',
+  'Avondale',
+  'Roscoe Village',
+  'Wicker Park',
+  'Bucktown',
+  'Lakeview',
+  'Lincoln Square',
+  'North Center',
+  'Belmont-Cragin',
+  'Hermosa',
+  'Portage Park',
+];
+
+const quickLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'All Services', href: '/services' },
+  { label: 'Service Areas', href: '/service-areas' },
+  { label: 'Reviews', href: '/reviews' },
+  { label: 'FAQ', href: '/faq' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+];
+---
+
+<footer class="bg-brand-blue text-white">
+  {/* Main footer content */}
+  <div class="max-w-7xl mx-auto px-4 py-12 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      {/* Column 1: Business Info */}
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-2xl" aria-hidden="true">🔧</span>
+          <div>
+            <h3 class="font-heading font-bold text-lg leading-tight">
+              Sandoval <span class="text-brand-red">Plumbing</span>
+            </h3>
+          </div>
+        </div>
+        <p class="text-gray-300 text-sm mb-4">
+          Family-owned Chicago plumber serving the community for over 25 years.
+        </p>
+        <div class="space-y-2 text-sm">
+          <div class="flex items-start gap-2">
+            <span class="mt-0.5 shrink-0" aria-hidden="true">📍</span>
+            <span class="text-gray-300">
+              3922 N Bernard St<br />
+              Chicago, IL 60618
+            </span>
+          </div>
+          <div>
+            <a
+              href="tel:+17736103344"
+              class="flex items-center gap-2 text-white font-bold hover:text-brand-red transition-colors"
+            >
+              <span aria-hidden="true">📞</span>
+              (773) 610-3344
+            </a>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="mt-0.5 shrink-0" aria-hidden="true">🕐</span>
+            <span class="text-gray-300">
+              Open 24 Hours, 7 Days a Week<br />
+              <span class="text-xs italic">Including nights, weekends & holidays</span>
+            </span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="mt-0.5 shrink-0" aria-hidden="true">⭐</span>
+            <span class="text-gray-300"> 4.9 Stars &middot; 300+ Google Reviews </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Column 2: Quick Links */}
+      <div>
+        <h3 class="font-heading font-bold text-base mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          {
+            quickLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  class="text-gray-300 hover:text-white text-sm transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      {/* Column 3: Services */}
+      <div>
+        <h3 class="font-heading font-bold text-base mb-4">Services</h3>
+        <ul class="space-y-2">
+          {
+            [
+              { label: 'Emergency Plumbing', href: '/services/emergency-plumbing' },
+              { label: 'Drain Cleaning', href: '/services/drain-cleaning' },
+              { label: 'Water Heater Repair', href: '/services/water-heater' },
+              { label: 'Leak Detection', href: '/services/leak-detection' },
+              { label: 'Sewer Line Services', href: '/services/sewer-line' },
+              { label: 'Bathroom Plumbing', href: '/services/bathroom-plumbing' },
+              { label: 'Kitchen Plumbing', href: '/services/kitchen-plumbing' },
+              { label: 'Pipe Repair', href: '/services/pipe-repair' },
+              { label: 'Gas Line Services', href: '/services/gas-line' },
+              { label: 'Preventive Maintenance', href: '/services/preventive-maintenance' },
+            ].map((service) => (
+              <li key={service.href}>
+                <a
+                  href={service.href}
+                  class="text-gray-300 hover:text-white text-sm transition-colors"
+                >
+                  {service.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      {/* Column 4: Service Areas */}
+      <div>
+        <h3 class="font-heading font-bold text-base mb-4">Neighborhoods We Serve</h3>
+        <div class="flex flex-wrap gap-1.5">
+          {
+            neighborhoods.map((hood) => (
+              <a
+                key={hood}
+                href={`/service-areas/${hood.toLowerCase().replace(/\s+/g, '-')}`}
+                class="inline-block bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white text-xs px-2.5 py-1 rounded-full transition-colors"
+              >
+                {hood}
+              </a>
+            ))
+          }
+        </div>
+        <p class="text-gray-400 text-xs mt-4">
+          And all of Chicagoland. <a href="/service-areas" class="text-brand-red hover:underline"
+            >See all areas →</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* Bottom bar */}
+  <div class="border-t border-white/10">
+    <div
+      class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-gray-400"
+    >
+      <p>&copy; {new Date().getFullYear()} Sandoval Plumbing. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <span>Licensed &amp; Insured in Illinois</span>
+        <span>License: {/* REPLACE WITH: actual license number */}</span>
+        <span class="hidden md:inline">·</span>
+        <div class="flex items-center gap-3">
+          <a
+            href="https://www.google.com/maps/place/Sandoval+Plumbing"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-white transition-colors"
+            aria-label="Review us on Google"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+              ><path
+                d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a5.955 5.955 0 110-11.907c1.654 0 3.133.673 4.208 1.748l2.79-2.79A9.96 9.96 0 0012.545 2C7.024 2 2.543 6.477 2.543 12s4.481 10 10.002 10c8.333 0 10.665-7.665 9.967-11.761h-9.967z"
+              ></path></svg
+            >
+          </a>
+          <a
+            href="https://www.yelp.com/biz/sandoval-plumbing-chicago"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-white transition-colors"
+            aria-label="Review us on Yelp"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+              ><path
+                d="M12.271 14.48v4.966c0 .228-.076.428-.228.6a.87.87 0 01-.58.228c-.204 0-.392-.084-.564-.252a6.447 6.447 0 01-.504-.54c-.184-.228-.448-.564-.792-1.008-.344-.444-.632-.84-.864-1.188a29.694 29.694 0 01-.576-.828l-.036 1.764a8.752 8.752 0 01-.06.84.433.433 0 01-.468.372H5.875a.424.424 0 01-.324-.144.484.484 0 01-.132-.348c0-.1.022-.212.064-.336a41.526 41.526 0 01.452-1.116c.204-.484.416-.964.636-1.44.22-.476.392-.828.516-1.056.124-.228.244-.404.36-.528.116-.124.24-.212.372-.264.132-.052.276-.084.432-.096.156-.012.344-.018.564-.018h4.416z"
+              ></path></svg
+            >
+          </a>
+        </div>
+        <a href="/es" class="hover:text-white transition-colors">Español</a>
+      </div>
+    </div>
+  </div>
+</footer>
