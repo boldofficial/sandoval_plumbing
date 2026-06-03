@@ -1,0 +1,179 @@
+---
+import { Image } from 'astro:assets';
+import serviceHero from '../../assets/hero-placeholder.jpg';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import BeforeAfterSlider from '../../components/islands/BeforeAfterSlider';
+import FAQAccordion from '../../components/islands/FAQAccordion';
+import ContactForm from '../../components/islands/ContactForm';
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews');
+const reviewQuote = reviews.find((r) => r.data.rating >= 5);
+
+const faqs = [
+  {
+    question: 'How do I know if my sewer line is damaged?',
+    answer:
+      'Common signs include multiple drains backing up, sewage odors in the yard, lush patches of grass over the sewer line, gurgling toilets, and unexplained sinkholes or depressions in your yard.',
+  },
+  {
+    question: 'Do you offer trenchless sewer repair?',
+    answer:
+      'Yes! When possible, we use trenchless methods like pipe bursting and CIPP lining. These techniques repair your sewer line without digging up your yard, driveway, or landscaping.',
+  },
+  {
+    question: 'Why do Chicago homes have so many sewer line problems?',
+    answer:
+      "Many Chicago neighborhoods still have original clay tile or cast iron sewer lines installed 50-100 years ago. These materials crack, collect roots, and deteriorate over time. Additionally, Chicago's freeze-thaw cycles put stress on underground pipes.",
+  },
+  {
+    question: 'How much does sewer line repair cost?',
+    answer:
+      'Costs vary widely depending on the extent of damage and repair method. Trenchless repair is often more affordable than full excavation. We provide a free, no-obligation estimate after camera inspection.',
+  },
+  {
+    question: 'How long does sewer line replacement take?',
+    answer:
+      "Trenchless repair can often be completed in 1-2 days. Traditional excavation may take 2-4 days depending on the depth and length of pipe needing replacement. We'll give you a timeline during the estimate.",
+  },
+];
+---
+
+<ServiceLayout
+  title="Sewer Line Services in Chicago, IL | Sandoval Plumbing"
+  description="Sewer line repair and replacement in Chicago. Camera inspection, hydro-jetting, and trenchless repair. Call (773) 610-3344."
+  serviceName="Sewer Line"
+>
+  {/* Hero image */}
+  <div class="relative h-56 md:h-72 rounded-xl overflow-hidden mb-8">
+    <Image
+      src={serviceHero}
+      alt="Sewer line services by Sandoval Plumbing in Chicago"
+      width={800}
+      height={400}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute bottom-4 left-6 text-white">
+      <p class="text-sm font-semibold opacity-80">Sewer Line Services</p>
+    </div>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue mb-6">
+    Sewer Line Services in Chicago
+  </h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    Chicago's aging infrastructure means many homes still have original clay or cast iron sewer
+    lines that are decades old. Sandoval Plumbing specializes in diagnosing and repairing sewer line
+    issues using the latest technology — often without digging up your yard.
+  </p>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">
+    Signs You Need Sewer Line Service
+  </h2>
+  <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-8">
+    <li>Multiple drains backing up at once</li>
+    <li>Sewage odors in your yard or basement</li>
+    <li>Lush, green patches over your sewer line</li>
+    <li>Sinkholes or depressions in your yard</li>
+    <li>Gurgling toilets when you run water</li>
+    <li>Frequent, recurring drain clogs</li>
+  </ul>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">What We Do</h2>
+  <ol class="list-decimal pl-6 space-y-3 text-gray-600 mb-8">
+    <li>
+      <strong class="text-brand-blue">Camera Inspection:</strong> We send a professional sewer camera
+      to see exactly what's happening inside your line.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Diagnose:</strong> Identify cracks, root intrusion, bellied pipes,
+      blockages, or collapsed sections.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Recommend:</strong> We explain your options — from hydro-jetting
+      to trenchless repair to full replacement.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Repair:</strong> We fix the problem with minimal disruption to your
+      property.
+    </li>
+  </ol>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Why Choose Sandoval</h2>
+  <ul class="space-y-2 text-gray-600 mb-8">
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Advanced camera inspection — see what we see</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Trenchless repair options save your landscaping</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Experience with Chicago's old clay and cast iron lines</span>
+    </li>
+  </ul>
+
+  <div class="mb-8">
+    <BeforeAfterSlider
+      client:visible
+      beforeImage="https://picsum.photos/seed/sewer-before/800/600"
+      afterImage="https://picsum.photos/seed/sewer-after/800/600"
+      beforeLabel="Damaged Line"
+      afterLabel="Repaired"
+    />
+  </div>
+
+  {/* Related review quote */}
+  {
+    reviewQuote && (
+      <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl shrink-0" aria-hidden="true">
+            ⭐
+          </span>
+          <div>
+            <p class="text-gray-600 italic leading-relaxed mb-3">
+              &ldquo;{reviewQuote.body}&rdquo;
+            </p>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm text-brand-blue">
+                — {reviewQuote.data.reviewer}
+              </span>
+              <span
+                class="text-yellow-400 text-sm"
+                aria-label={`${reviewQuote.data.rating} out of 5 stars`}
+              >
+                {'★'.repeat(reviewQuote.data.rating)}
+              </span>
+              <span class="text-xs text-gray-400">
+                {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
+              </span>
+              {reviewQuote.data.verified && (
+                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="mb-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
+    <FAQAccordion client:visible faqs={faqs} />
+  </div>
+
+  <div class="bg-brand-lightgray rounded-xl p-6 md:p-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Request a Free Estimate</h2>
+    <ContactForm client:visible />
+  </div>
+</ServiceLayout>
