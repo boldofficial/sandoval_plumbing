@@ -1,0 +1,176 @@
+---
+import { Image } from 'astro:assets';
+import serviceHero from '../../assets/hero-placeholder.jpg';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import BeforeAfterSlider from '../../components/islands/BeforeAfterSlider';
+import FAQAccordion from '../../components/islands/FAQAccordion';
+import ContactForm from '../../components/islands/ContactForm';
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews');
+const reviewQuote = reviews.find((r) => r.data.rating >= 5);
+
+const faqs = [
+  {
+    question: 'Why is my kitchen sink draining slowly?',
+    answer:
+      'Kitchen sink clogs are usually caused by grease and food particle buildup in the drain pipe. Hydro-jetting is the most effective solution. We also recommend using a drain strainer and avoiding pouring grease down the drain.',
+  },
+  {
+    question: 'Can you install a garbage disposal?',
+    answer:
+      'Yes! We install and replace garbage disposals from InSinkErator, Waste King, and other major brands. We can also handle the electrical connection if needed.',
+  },
+  {
+    question: 'Do you connect dishwashers?',
+    answer:
+      'Yes, we install and repair dishwasher supply lines and drains. We ensure proper connections to prevent leaks and water damage under your sink.',
+  },
+  {
+    question: 'How much does kitchen faucet installation cost?',
+    answer:
+      'Cost depends on the type of faucet and complexity of installation. We provide free estimates and can help you choose a faucet that fits your budget and kitchen.',
+  },
+  {
+    question: "What's causing the leak under my kitchen sink?",
+    answer:
+      "Common causes include loose connections, worn-out supply lines, failed trap gaskets, and corrosion. We'll find the exact source and fix it properly.",
+  },
+];
+---
+
+<ServiceLayout
+  title="Kitchen Plumbing in Chicago, IL | Sandoval Plumbing"
+  description="Kitchen plumbing services in Chicago. Faucets, disposals, dishwashers, and more. Call (773) 610-3344 for a free estimate."
+  serviceName="Kitchen Plumbing"
+>
+  {/* Hero image */}
+  <div class="relative h-56 md:h-72 rounded-xl overflow-hidden mb-8">
+    <Image
+      src={serviceHero}
+      alt="Kitchen plumbing by Sandoval Plumbing in Chicago"
+      width={800}
+      height={400}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute bottom-4 left-6 text-white">
+      <p class="text-sm font-semibold opacity-80">Kitchen Plumbing</p>
+    </div>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue mb-6">
+    Kitchen Plumbing in Chicago
+  </h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    The kitchen is one of the most-used rooms in your home, and plumbing problems here can disrupt
+    your entire daily routine. Sandoval Plumbing provides fast, reliable kitchen plumbing service —
+    from a dripping faucet to a complete kitchen remodel.
+  </p>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">
+    Signs You Need Kitchen Plumbing Service
+  </h2>
+  <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-8">
+    <li>Slow-draining or clogged kitchen sink</li>
+    <li>Leaking faucet or sprayer</li>
+    <li>Garbage disposal not working or humming</li>
+    <li>Water leaks under the sink</li>
+    <li>Dishwasher not draining properly</li>
+    <li>Low water pressure at the faucet</li>
+  </ul>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">What We Do</h2>
+  <ol class="list-decimal pl-6 space-y-3 text-gray-600 mb-8">
+    <li>
+      <strong class="text-brand-blue">Diagnose:</strong> We find the exact cause of your kitchen plumbing
+      issue.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Repair:</strong> Fix leaks, clogs, disposals, and fixture problems.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Install:</strong> Professional installation of faucets, disposals,
+      dishwashers, and filters.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Prevent:</strong> Advice on maintaining your kitchen plumbing to
+      prevent future issues.
+    </li>
+  </ol>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Why Choose Sandoval</h2>
+  <ul class="space-y-2 text-gray-600 mb-8">
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Experience with all major brands and models</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Same-day service for urgent issues</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Clean, professional work with no mess left behind</span>
+    </li>
+  </ul>
+
+  <div class="mb-8">
+    <BeforeAfterSlider
+      client:visible
+      beforeImage="https://picsum.photos/seed/kitchen-before/800/600"
+      afterImage="https://picsum.photos/seed/kitchen-after/800/600"
+    />
+  </div>
+
+  {/* Related review quote */}
+  {
+    reviewQuote && (
+      <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl shrink-0" aria-hidden="true">
+            ⭐
+          </span>
+          <div>
+            <p class="text-gray-600 italic leading-relaxed mb-3">
+              &ldquo;{reviewQuote.body}&rdquo;
+            </p>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm text-brand-blue">
+                — {reviewQuote.data.reviewer}
+              </span>
+              <span
+                class="text-yellow-400 text-sm"
+                aria-label={`${reviewQuote.data.rating} out of 5 stars`}
+              >
+                {'★'.repeat(reviewQuote.data.rating)}
+              </span>
+              <span class="text-xs text-gray-400">
+                {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
+              </span>
+              {reviewQuote.data.verified && (
+                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="mb-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
+    <FAQAccordion client:visible faqs={faqs} />
+  </div>
+
+  <div class="bg-brand-lightgray rounded-xl p-6 md:p-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Request a Free Estimate</h2>
+    <ContactForm client:visible />
+  </div>
+</ServiceLayout>
