@@ -1,0 +1,77 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import EmergencyCTA from '../../components/ui/EmergencyCTA.astro';
+import { getCollection, render } from 'astro:content';
+import { blogPostingSchema } from '../../utils/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.(md|mdx)$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const articleSchema = blogPostingSchema({
+  title: post.data.title,
+  description: post.data.description,
+  pubDate: post.data.pubDate,
+  author: post.data.author,
+  image: post.data.image,
+});
+---
+
+<PageLayout
+  title={`${post.data.title} | Sandoval Plumbing Chicago`}
+  description={post.data.description}
+  schema={articleSchema}
+>
+  <article class="max-w-3xl mx-auto px-4 py-12 md:py-16">
+    <header class="mb-8">
+      <p class="text-sm text-gray-400 mb-2">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {
+            post.data.pubDate.toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric',
+            })
+          }
+        </time>
+        {
+          post.data.author && (
+            <>
+              <span class="mx-2">·</span>
+              <span class="text-gray-500">By {post.data.author}</span>
+            </>
+          )
+        }
+      </p>
+      <h1 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue leading-tight">
+        {post.data.title}
+      </h1>
+      {
+        post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mt-4">
+            {post.data.tags.map((tag: string) => (
+              <span class="bg-brand-lightgray text-gray-500 text-xs font-medium px-2.5 py-1 rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
+    </header>
+
+    <div class="prose prose-gray max-w-none">
+      <Content />
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-gray-200">
+      <EmergencyCTA compact />
+    </div>
+  </article>
+</PageLayout>
