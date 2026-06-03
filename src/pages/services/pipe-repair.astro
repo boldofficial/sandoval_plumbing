@@ -1,0 +1,175 @@
+---
+import { Image } from 'astro:assets';
+import serviceHero from '../../assets/hero-placeholder.jpg';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import BeforeAfterSlider from '../../components/islands/BeforeAfterSlider';
+import FAQAccordion from '../../components/islands/FAQAccordion';
+import ContactForm from '../../components/islands/ContactForm';
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews');
+const reviewQuote = reviews.find((r) => r.data.rating >= 5);
+
+const faqs = [
+  {
+    question: 'What causes pipes to burst in Chicago?',
+    answer:
+      "The main cause is freezing — when water inside pipes freezes, it expands and puts pressure on the pipe walls. In Chicago's harsh winters, uninsulated pipes in basements, attics, and exterior walls are most at risk.",
+  },
+  {
+    question: 'How do I know if my pipes are old and need replacement?',
+    answer:
+      'Signs include visible rust/corrosion, frequent leaks, low water pressure, discolored water, and banging noises. If your home has original galvanized steel or cast iron pipes (common in older Chicago homes), replacement is likely overdue.',
+  },
+  {
+    question: 'What type of pipe is best for replacement?',
+    answer:
+      "For most applications, we recommend PEX (cross-linked polyethylene) — it's flexible, resistant to freezing, corrosion-proof, and more affordable than copper. Copper is still preferred for exposed applications where appearance matters.",
+  },
+  {
+    question: 'Can you repair a frozen pipe before it bursts?',
+    answer:
+      'Yes! If you catch a frozen pipe before it bursts, we can safely thaw it using non-destructive methods. Call us immediately if you suspect a frozen pipe — the faster we act, the less likely it is to burst.',
+  },
+  {
+    question: 'How long does repiping a house take?',
+    answer:
+      'A full house repiping typically takes 2-5 days depending on the size of your home and accessibility. We work efficiently to minimize disruption and clean up each day before leaving.',
+  },
+];
+---
+
+<ServiceLayout
+  title="Pipe Repair & Replacement in Chicago, IL | Sandoval Plumbing"
+  description="Pipe repair and replacement in Chicago. Old pipes, frozen pipes, burst pipes, and repiping. Call (773) 610-3344 for emergency service."
+  serviceName="Pipe Repair & Replacement"
+>
+  {/* Hero image */}
+  <div class="relative h-56 md:h-72 rounded-xl overflow-hidden mb-8">
+    <Image
+      src={serviceHero}
+      alt="Pipe repair by Sandoval Plumbing in Chicago"
+      width={800}
+      height={400}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute bottom-4 left-6 text-white">
+      <p class="text-sm font-semibold opacity-80">Pipe Repair & Replacement</p>
+    </div>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue mb-6">
+    Pipe Repair & Replacement in Chicago
+  </h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    Chicago homes have pipes made from a variety of materials — copper, galvanized steel, cast iron,
+    and PVC. Age, freezing temperatures, and hard water all take their toll. Sandoval Plumbing
+    repairs and replaces all types of piping — from a single section to a complete house repipe.
+  </p>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Signs You Need Pipe Repair</h2>
+  <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-8">
+    <li>Visible rust, corrosion, or leaks on pipes</li>
+    <li>Water stains on walls or ceilings</li>
+    <li>Low water pressure throughout the house</li>
+    <li>Discolored water (rusty, brown, or yellow)</li>
+    <li>Banging or rattling noises in walls</li>
+    <li>Frequent pipe bursts in winter</li>
+  </ul>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">What We Do</h2>
+  <ol class="list-decimal pl-6 space-y-3 text-gray-600 mb-8">
+    <li>
+      <strong class="text-brand-blue">Assess:</strong> We inspect your pipes to determine material, condition,
+      and extent of damage.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Recommend:</strong> Honest advice on repair vs. replacement based
+      on your situation and budget.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Repair:</strong> Fast, professional repair of leaks, cracks, and
+      burst pipes.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Replace:</strong> Full or partial repiping with modern materials
+      (PEX, copper) for long-term reliability.
+    </li>
+  </ol>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Why Choose Sandoval</h2>
+  <ul class="space-y-2 text-gray-600 mb-8">
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Emergency pipe repair — 60-minute response time</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Experience with Chicago's older pipe materials</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Modern materials (PEX) for freeze-resistant plumbing</span>
+    </li>
+  </ul>
+
+  <div class="mb-8">
+    <BeforeAfterSlider
+      client:visible
+      beforeImage="https://picsum.photos/seed/pipe-before/800/600"
+      afterImage="https://picsum.photos/seed/pipe-after/800/600"
+    />
+  </div>
+
+  {/* Related review quote */}
+  {
+    reviewQuote && (
+      <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl shrink-0" aria-hidden="true">
+            ⭐
+          </span>
+          <div>
+            <p class="text-gray-600 italic leading-relaxed mb-3">
+              &ldquo;{reviewQuote.body}&rdquo;
+            </p>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm text-brand-blue">
+                — {reviewQuote.data.reviewer}
+              </span>
+              <span
+                class="text-yellow-400 text-sm"
+                aria-label={`${reviewQuote.data.rating} out of 5 stars`}
+              >
+                {'★'.repeat(reviewQuote.data.rating)}
+              </span>
+              <span class="text-xs text-gray-400">
+                {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
+              </span>
+              {reviewQuote.data.verified && (
+                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="mb-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
+    <FAQAccordion client:visible faqs={faqs} />
+  </div>
+
+  <div class="bg-brand-lightgray rounded-xl p-6 md:p-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Request a Free Estimate</h2>
+    <ContactForm client:visible />
+  </div>
+</ServiceLayout>
