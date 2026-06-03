@@ -1,0 +1,104 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/islands/ContactForm';
+import ServiceAreaMap from '../components/ui/ServiceAreaMap.astro';
+---
+
+<PageLayout
+  title="Free Estimate — Contact Sandoval Plumbing | Chicago Plumber"
+  description="Get a free plumbing estimate from Sandoval Plumbing. Call (773) 610-3344 or fill out our online form. Available 24/7 for emergencies."
+>
+  <section class="py-16 md:py-24 bg-gradient-to-br from-brand-blue/5 to-brand-lightgray">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-heading font-bold text-brand-blue mb-4">
+          Get a Free Plumbing Estimate
+        </h1>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+          Tell us about your plumbing issue and we'll get back to you within 60 minutes. For
+          emergencies, call now.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Form -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+          <ContactForm client:visible />
+        </div>
+
+        <!-- Contact Info -->
+        <div class="space-y-8">
+          <!-- Phone card -->
+          <div class="bg-brand-blue text-white rounded-2xl p-8">
+            <div class="text-4xl mb-4" aria-hidden="true">📞</div>
+            <h2 class="text-2xl font-heading font-bold mb-2">Call Eddie Directly</h2>
+            <p class="text-gray-300 text-sm mb-4">
+              No dispatchers, no voicemail, no call centers. Eddie answers the phone.
+            </p>
+            <a
+              href="tel:+17736103344"
+              class="text-2xl md:text-3xl font-bold hover:text-brand-red transition-colors block mb-2"
+            >
+              (773) 610-3344
+            </a>
+            <p class="text-gray-400 text-sm">Available 24/7 — including holidays</p>
+          </div>
+
+          <!-- Hours card -->
+          <div class="bg-brand-lightgray rounded-2xl p-6">
+            <h3 class="font-heading font-bold text-brand-blue text-lg mb-3">Business Hours</h3>
+            <div class="space-y-2 text-sm text-gray-600">
+              <div class="flex justify-between">
+                <span>Monday — Sunday</span>
+                <span class="font-semibold text-green-600">Open 24 Hours</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Holidays</span>
+                <span class="font-semibold text-green-600">Open 24 Hours</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address card -->
+          <div class="bg-brand-lightgray rounded-2xl p-6">
+            <h3 class="font-heading font-bold text-brand-blue text-lg mb-3">Our Location</h3>
+            <p class="text-sm text-gray-600">
+              3922 N Bernard St<br />
+              Chicago, IL 60618<br />
+              <span class="text-gray-400">Irving Park Neighborhood</span>
+            </p>
+          </div>
+
+          <!-- WhatsApp -->
+          <div class="bg-green-50 rounded-2xl p-6 border border-green-200">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl" aria-hidden="true">💬</span>
+              <div>
+                <h3 class="font-heading font-bold text-green-800 text-lg mb-1">
+                  Text Us on WhatsApp
+                </h3>
+                <p class="text-sm text-green-700 mb-3">Prefer to text? Reach us on WhatsApp.</p>
+                <a
+                  href="https://wa.me/17736103344"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 bg-green-500 text-white font-bold px-5 py-2.5 rounded-lg hover:bg-green-600 transition"
+                >
+                  Send a Message →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-2xl font-heading font-bold text-brand-blue text-center mb-6">Find Us</h2>
+      <ServiceAreaMap />
+    </div>
+  </section>
+</PageLayout>
