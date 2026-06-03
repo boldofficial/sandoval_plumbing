@@ -1,0 +1,177 @@
+---
+import { Image } from 'astro:assets';
+import serviceHero from '../../assets/hero-placeholder.jpg';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import BeforeAfterSlider from '../../components/islands/BeforeAfterSlider';
+import FAQAccordion from '../../components/islands/FAQAccordion';
+import ContactForm from '../../components/islands/ContactForm';
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews');
+const reviewQuote = reviews.find((r) => r.data.rating >= 5);
+
+const faqs = [
+  {
+    question: 'Can you help with a complete bathroom remodel?',
+    answer:
+      'Yes! We handle all plumbing aspects of bathroom remodels, including rough-in work, fixture installation, and final connections. We work with your contractor or handle the entire project.',
+  },
+  {
+    question: 'How much does it cost to replace a toilet in Chicago?',
+    answer:
+      'Toilet replacement costs vary based on the model and any underlying issues (flange damage, pipe problems). We provide free estimates and offer a range of options from basic to high-efficiency models.',
+  },
+  {
+    question: 'Why is my shower losing water pressure?',
+    answer:
+      'Low shower pressure is usually caused by mineral buildup in the shower head or valve, a failing pressure balancing valve, or underlying pipe issues. We can diagnose and fix the problem quickly.',
+  },
+  {
+    question: 'Do you install walk-in showers and tubs?',
+    answer:
+      'Yes, we install walk-in showers, freestanding tubs, and traditional tub/shower combinations. We work with your selection or can recommend reliable fixtures.',
+  },
+  {
+    question: 'How long does a bathroom faucet replacement take?',
+    answer:
+      'A standard faucet replacement typically takes 1-2 hours. More complex installations (wall-mounted, vessel sink faucets) may take longer.',
+  },
+];
+---
+
+<ServiceLayout
+  title="Bathroom Plumbing in Chicago, IL | Sandoval Plumbing"
+  description="Bathroom plumbing services in Chicago. Toilets, sinks, showers, tubs, and complete bathroom remodels. Call (773) 610-3344."
+  serviceName="Bathroom Plumbing"
+>
+  {/* Hero image */}
+  <div class="relative h-56 md:h-72 rounded-xl overflow-hidden mb-8">
+    <Image
+      src={serviceHero}
+      alt="Bathroom plumbing by Sandoval Plumbing in Chicago"
+      width={800}
+      height={400}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute bottom-4 left-6 text-white">
+      <p class="text-sm font-semibold opacity-80">Bathroom Plumbing</p>
+    </div>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue mb-6">
+    Bathroom Plumbing in Chicago
+  </h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    From a running toilet to a complete bathroom remodel, Sandoval Plumbing handles all bathroom
+    plumbing needs. We treat your home with respect — working cleanly, explaining every step, and
+    making sure everything is perfect when we leave.
+  </p>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">
+    Signs You Need Bathroom Plumbing Service
+  </h2>
+  <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-8">
+    <li>Running toilet wasting water</li>
+    <li>Leaking faucet or shower head</li>
+    <li>Low water pressure in the shower</li>
+    <li>Clogged shower or sink drain</li>
+    <li>Water damage around fixtures</li>
+    <li>Cracked or leaking toilet base</li>
+  </ul>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">What We Do</h2>
+  <ol class="list-decimal pl-6 space-y-3 text-gray-600 mb-8">
+    <li>
+      <strong class="text-brand-blue">Inspect:</strong> We assess all bathroom fixtures for leaks, wear,
+      and potential problems.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Repair:</strong> Fast, reliable repair of toilets, faucets, showers,
+      tubs, and drains.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Replace:</strong> Professional installation of new fixtures with
+      proper connections and sealing.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Remodel:</strong> Complete bathroom plumbing for renovations — rough-in
+      to finish.
+    </li>
+  </ol>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Why Choose Sandoval</h2>
+  <ul class="space-y-2 text-gray-600 mb-8">
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Clean work — we protect your floors and surfaces</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Eddie explains everything so you understand your options</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Fair pricing — no unnecessary repairs recommended</span>
+    </li>
+  </ul>
+
+  <div class="mb-8">
+    <BeforeAfterSlider
+      client:visible
+      beforeImage="https://picsum.photos/seed/bath-before/800/600"
+      afterImage="https://picsum.photos/seed/bath-after/800/600"
+    />
+  </div>
+
+  {/* Related review quote */}
+  {
+    reviewQuote && (
+      <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl shrink-0" aria-hidden="true">
+            ⭐
+          </span>
+          <div>
+            <p class="text-gray-600 italic leading-relaxed mb-3">
+              &ldquo;{reviewQuote.body}&rdquo;
+            </p>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm text-brand-blue">
+                — {reviewQuote.data.reviewer}
+              </span>
+              <span
+                class="text-yellow-400 text-sm"
+                aria-label={`${reviewQuote.data.rating} out of 5 stars`}
+              >
+                {'★'.repeat(reviewQuote.data.rating)}
+              </span>
+              <span class="text-xs text-gray-400">
+                {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
+              </span>
+              {reviewQuote.data.verified && (
+                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="mb-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
+    <FAQAccordion client:visible faqs={faqs} />
+  </div>
+
+  <div class="bg-brand-lightgray rounded-xl p-6 md:p-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Request a Free Estimate</h2>
+    <ContactForm client:visible />
+  </div>
+</ServiceLayout>
