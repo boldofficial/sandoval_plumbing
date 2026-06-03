@@ -1,0 +1,178 @@
+---
+import { Image } from 'astro:assets';
+import serviceHero from '../../assets/hero-placeholder.jpg';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import BeforeAfterSlider from '../../components/islands/BeforeAfterSlider';
+import FAQAccordion from '../../components/islands/FAQAccordion';
+import ContactForm from '../../components/islands/ContactForm';
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews');
+const reviewQuote = reviews.find((r) => r.data.rating >= 5);
+
+const faqs = [
+  {
+    question: 'How long do water heaters typically last?',
+    answer:
+      "Traditional tank water heaters last 8-12 years. Tankless systems can last 15-20 years with proper maintenance. Chicago's hard water can shorten this lifespan, so regular maintenance is important.",
+  },
+  {
+    question: 'Should I repair or replace my water heater?',
+    answer:
+      'If your water heater is under 8 years old and the issue is minor (heating element, thermostat), repair may be cost-effective. Over 10 years old or with a leaking tank, replacement is usually the better investment.',
+  },
+  {
+    question: 'What size water heater do I need for my Chicago home?',
+    answer:
+      "A 40-gallon tank is typically sufficient for a 2-3 bedroom home. Larger families or homes with multiple bathrooms may need 50-75 gallons. We'll help you choose the right size during your free estimate.",
+  },
+  {
+    question: 'Do you install tankless water heaters?',
+    answer:
+      'Yes! We install Navien and Rinnai tankless water heaters. Tankless systems provide unlimited hot water, save space, and are 24-34% more energy efficient than traditional tank heaters.',
+  },
+  {
+    question: 'How long does a water heater installation take?',
+    answer:
+      'A standard tank replacement typically takes 2-4 hours. Tankless installation may take 4-6 hours depending on the complexity of venting and gas line modifications needed.',
+  },
+];
+---
+
+<ServiceLayout
+  title="Water Heater Repair & Installation in Chicago | Sandoval Plumbing"
+  description="Water heater repair and installation in Chicago. Tank, tankless, and hybrid systems. A.O. Smith, Navien, Rheem. Call (773) 610-3344."
+  serviceName="Water Heater"
+>
+  {/* Hero image */}
+  <div class="relative h-56 md:h-72 rounded-xl overflow-hidden mb-8">
+    <Image
+      src={serviceHero}
+      alt="Water heater repair by Sandoval Plumbing in Chicago"
+      width={800}
+      height={400}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute bottom-4 left-6 text-white">
+      <p class="text-sm font-semibold opacity-80">Water Heater Repair & Installation</p>
+    </div>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue mb-6">
+    Water Heater Repair & Installation in Chicago
+  </h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    No hot water in a Chicago winter isn't just uncomfortable — it's dangerous. Sandoval Plumbing
+    provides fast, professional water heater repair and installation for all makes and models. We'll
+    diagnose the problem and give you honest advice on whether to repair or replace.
+  </p>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">
+    Signs You Need Water Heater Service
+  </h2>
+  <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-8">
+    <li>No hot water or inconsistent temperature</li>
+    <li>Popping or rumbling noises from the tank</li>
+    <li>Rusty or discolored hot water</li>
+    <li>Water pooling around the unit</li>
+    <li>Water heater is over 10 years old</li>
+    <li>Higher energy bills without explanation</li>
+  </ul>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">What We Do</h2>
+  <ol class="list-decimal pl-6 space-y-3 text-gray-600 mb-8">
+    <li>
+      <strong class="text-brand-blue">Diagnose:</strong> We check the heating element, thermostat, pressure
+      relief valve, and tank condition.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Recommend:</strong> Honest advice on whether repair or replacement
+      makes more sense for your situation.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Install:</strong> Professional installation of your new water heater
+      with proper permits and inspection.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Dispose:</strong> We haul away your old unit and clean up completely.
+    </li>
+  </ol>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Why Choose Sandoval</h2>
+  <ul class="space-y-2 text-gray-600 mb-8">
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Expertise with tank, tankless, and hybrid systems</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Top brands: A.O. Smith, Navien, Rheem, Bradford White</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Same-day installation available for emergencies</span>
+    </li>
+  </ul>
+
+  <div class="mb-8">
+    <BeforeAfterSlider
+      client:visible
+      beforeImage="https://picsum.photos/seed/heater-before/800/600"
+      afterImage="https://picsum.photos/seed/heater-after/800/600"
+      beforeLabel="Old Unit"
+      afterLabel="New Installation"
+    />
+  </div>
+
+  {/* Related review quote */}
+  {
+    reviewQuote && (
+      <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl shrink-0" aria-hidden="true">
+            ⭐
+          </span>
+          <div>
+            <p class="text-gray-600 italic leading-relaxed mb-3">
+              &ldquo;{reviewQuote.body}&rdquo;
+            </p>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm text-brand-blue">
+                — {reviewQuote.data.reviewer}
+              </span>
+              <span
+                class="text-yellow-400 text-sm"
+                aria-label={`${reviewQuote.data.rating} out of 5 stars`}
+              >
+                {'★'.repeat(reviewQuote.data.rating)}
+              </span>
+              <span class="text-xs text-gray-400">
+                {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
+              </span>
+              {reviewQuote.data.verified && (
+                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="mb-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
+    <FAQAccordion client:visible faqs={faqs} />
+  </div>
+
+  <div class="bg-brand-lightgray rounded-xl p-6 md:p-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Request a Free Estimate</h2>
+    <ContactForm client:visible />
+  </div>
+</ServiceLayout>
