@@ -1,0 +1,374 @@
+{
+  "business_profile": {
+    "name": "Sandoval Plumbing",
+    "owner": "Mr. Sandoval (Eduardo / Eddie)",
+    "address": "3922 N Bernard St, Chicago, IL 60618",
+    "neighborhood": "Irving Park, Chicago",
+    "phone": "(773) 610-3344",
+    "phone_alt": "(312) 723-8993",
+    "hours": "Open 24 hours, 7 days a week",
+    "years_in_business": "25+",
+    "business_type": "Family-owned, locally operated",
+    "service_type": ["Residential", "Commercial"],
+    "service_area": "Chicago and North Chicago suburbs (Chicagoland area)",
+    "current_online_presence": {
+      "website": "None (only a Facebook page that returns HTTP 400)",
+      "facebook": "https://www.facebook.com/share/bmtB1wpbadb8njf2/",
+      "yelp": "https://www.yelp.com/biz/sandoval-plumbing-chicago",
+      "google_maps": "https://www.google.com/maps/place/Sandoval+Plumbing",
+      "placeholder_site": "https://sandovalplumbing.univer.se/ (basic placeholder, not owned by business)"
+    }
+  },
+
+  "review_summary": {
+    "google_rating": 4.9,
+    "google_review_count": 306,
+    "yelp_rating": 5.0,
+    "yelp_review_count": 16,
+    "other_aggregators_rating": 5.0,
+    "other_aggregators_count": "265–267 (homespothq, locallyfind)",
+    "key_review_themes": [
+      "Responsive and quick communication",
+      "Fair and transparent pricing",
+      "Eddie personally mentioned by name repeatedly",
+      "Attentive explanations of the repair process",
+      "Saves customers money vs. larger competitors",
+      "24/7 availability including Sundays",
+      "Expertise in diagnosing DIY plumbing disasters",
+      "Punctual with proactive updates if running late"
+    ],
+    "notable_testimonial_snippets": [
+      "Sandoval recently did a job for me involving replacing a bath tub faucet that was causing squealing. I had another plumber come out and tell me I would need to spend 6x more to fix the issue.",
+      "I didn't have a go-to plumber, so I called up one of larger plumbing companies in Chicago. The guy who came out to give a quote wasn't even a plumber.",
+      "He is responsive and keeps you updated if he is running behind — which is important to me.",
+      "Eddie assessed the concerns with our faucet, tub spout and toilets and then returned the next day to repair them to perfection."
+    ]
+  },
+
+  "services_identified": [
+    "Emergency plumbing (24/7)",
+    "Drain cleaning and rodding",
+    "Leak detection and repair",
+    "Faucet installation and repair",
+    "Toilet repair and replacement",
+    "Water heater installation and repair (tank and tankless)",
+    "Garbage disposal installation",
+    "Kitchen plumbing",
+    "Bathroom plumbing",
+    "Sewer line inspection and repair",
+    "Pipe repair and replacement",
+    "Gas line bonding and safety",
+    "Dishwasher hookups",
+    "Fixture installation",
+    "Preventive maintenance and inspections",
+    "Energy-efficient water heater installation",
+    "Full system re-plumbing (whole house)"
+  ],
+
+  "current_weaknesses": [
+    "No real website — Facebook page only, and it returns HTTP 400 (unreachable)",
+    "No owned domain or branded web presence",
+    "No online booking or quote request form",
+    "No visible licensing/insurance information online",
+    "No service area pages for SEO",
+    "No structured FAQ or educational content",
+    "No blog or content marketing",
+    "Reviews not aggregated or displayed on a company site",
+    "No trust signals (BBB badge, license numbers, certifications)",
+    "No photo gallery of completed work",
+    "No before/after project documentation",
+    "GMB profile may lack secondary categories and full service list",
+    "No schema markup (LocalBusiness, Plumber, FAQPage)",
+    "No clear unique value proposition (UVP) stated anywhere",
+    "No branded email address",
+    "No Google Ads landing page capability",
+    "No Spanish-language content despite serving Hispanic Chicago neighborhoods"
+  ],
+
+  "competitors": [
+    {
+      "name": "Vanguard Plumbing and Sewer",
+      "address": "4352 N Kenneth Ave, Chicago, IL 60641",
+      "phone": "(773) 633-6139",
+      "website": "https://vanguardplumbingandsewer.com",
+      "google_rating": 4.9,
+      "review_count": "600+",
+      "bbb": "A+ accredited",
+      "strengths": [
+        "Full professional website with service pages, team page, FAQ, blog",
+        "600+ five-star reviews prominently displayed",
+        "Transparent upfront pricing highlighted across site",
+        "Video camera sewer inspection service",
+        "Custom plumbing specialty",
+        "Water filtration systems",
+        "Licensing info displayed prominently",
+        "Multiple contact methods (phone, text, email, form)"
+      ],
+      "weaknesses": [
+        "Not available 24 hours (Mon–Fri 7AM–7PM, Sat 7AM–3PM, closed Sun)",
+        "Does not offer commercial plumbing",
+        "Higher price point implied"
+      ]
+    },
+    {
+      "name": "Apex Plumbing & Sewer Inc.",
+      "location": "Chicago, IL",
+      "website": "Online presence via aggregators",
+      "strengths": [
+        "Free on-site estimates",
+        "Same-day service",
+        "Emergency plumbing",
+        "Licensed, bonded, insured technicians"
+      ]
+    },
+    {
+      "name": "Roto-Rooter Chicago",
+      "type": "National franchise",
+      "strengths": [
+        "National brand recognition",
+        "24/7 emergency answering",
+        "100% satisfaction guarantee",
+        "On-time guarantee"
+      ],
+      "weaknesses": [
+        "Higher pricing (franchise overhead)",
+        "Less personal service",
+        "Non-local feel"
+      ]
+    },
+    {
+      "name": "Right Away Plumbing",
+      "location": "Chicago, IL",
+      "years": "25+",
+      "strengths": [
+        "Family-owned and operated",
+        "Frozen pipe repair specialty",
+        "Navien tankless water heater training"
+      ]
+    },
+    {
+      "name": "Chicago Plumbing Squad",
+      "website": "https://chicagoplumbingsquad.com",
+      "strengths": [
+        "30–60 min response time advertised",
+        "Upfront pricing / no hidden fees",
+        "100% satisfaction guarantee",
+        "Blog with SEO content",
+        "Dedicated service pages for each service type",
+        "Background-checked plumbers listed"
+      ]
+    }
+  ],
+
+  "competitor_key_features_to_outshine": [
+    "24/7 true availability (Sandoval already has this — must be loudly marketed)",
+    "Named, personally trusted plumber (Eddie/Eduardo) — leverage this as brand story",
+    "Savings vs. large companies — make this a headline differentiator",
+    "25 years family-owned history — competitor credibility feature",
+    "Spanish-language version of the site (Irving Park is heavily Hispanic — no competitor offers this)",
+    "Transparent pricing page with service examples",
+    "Free estimate request form with fast response SLA",
+    "Photo gallery of real completed jobs",
+    "Video testimonials or written testimonials with photos",
+    "Online review widget aggregating Google + Yelp",
+    "Satisfaction guarantee statement",
+    "License number and insurance information displayed",
+    "Service area map with Chicago neighborhoods listed"
+  ],
+
+  "google_my_business_audit": {
+    "current_state": {
+      "claimed": "Likely claimed (appears in Maps with photos and hours)",
+      "hours": "Open 24 hours all days — correct",
+      "photos": "59 photos on Yelp; Google profile photos unknown count",
+      "website_linked": "Facebook page only — broken link (HTTP 400)",
+      "categories": "Plumber (primary) — secondary categories likely missing",
+      "services_list": "Partially populated based on third-party aggregators",
+      "description": "Unknown — likely minimal or missing",
+      "q_and_a": "No questions answered per Yelp listing",
+      "google_posts": "Unknown — likely unused",
+      "booking_link": "None"
+    },
+    "gmb_improvements_needed": [
+      "Update website URL to new domain once built",
+      "Add keyword-rich business description: '25-year family-owned Chicago plumber serving Irving Park and Chicagoland. 24/7 emergency service. Licensed, bonded, insured. Fair pricing. Call (773) 610-3344.'",
+      "Add all secondary categories: 'Drainage service', 'Water heater installation service', 'Sewer service', 'Gas installation service'",
+      "Fully populate all services with descriptions and prices where possible",
+      "Add all Chicago neighborhood service areas: Irving Park, Logan Square, Avondale, Roscoe Village, Wicker Park, Bucktown, Lakeview, Lincoln Square, North Center, etc.",
+      "Upload fresh high-quality photos of: team, completed work, vehicles, before/after",
+      "Enable Google Messaging for chat leads",
+      "Add booking link once website form is ready",
+      "Actively post Google Posts weekly (promotions, tips, seasonal alerts)",
+      "Set up Q&A with pre-answered common questions",
+      "Respond to all existing reviews publicly",
+      "Add license number to profile attributes",
+      "Ensure NAP (Name, Address, Phone) is consistent across all platforms"
+    ]
+  },
+
+  "seo_analysis": {
+    "current_seo_status": "Near zero — no owned website, no indexed pages, no backlinks from a branded domain",
+    "domain_recommendation": "sandovalplumbingchicago.com or sandovalplumbing.com (check availability)",
+    "target_keywords": {
+      "primary": [
+        "plumber Chicago",
+        "emergency plumber Chicago",
+        "plumber Irving Park Chicago",
+        "24 hour plumber Chicago",
+        "Chicago plumbing service"
+      ],
+      "secondary": [
+        "drain cleaning Chicago",
+        "water heater repair Chicago",
+        "sewer line repair Chicago",
+        "toilet repair Chicago",
+        "leak detection Chicago",
+        "garbage disposal installation Chicago",
+        "faucet repair Chicago",
+        "pipe repair Chicago"
+      ],
+      "long_tail": [
+        "emergency plumber near me Chicago IL",
+        "best plumber Irving Park",
+        "affordable plumber Chicago north side",
+        "same day plumber Chicago",
+        "plumber 60618",
+        "fontanero Chicago",
+        "plomero Chicago"
+      ],
+      "spanish_keywords": [
+        "plomero Chicago",
+        "fontanero en Chicago",
+        "servicio de plomería Chicago 24 horas",
+        "plomero Irving Park"
+      ]
+    },
+    "on_page_seo_recommendations": [
+      "Create a dedicated page per service with 500+ words of optimized content",
+      "Create neighborhood/service area landing pages for top 10+ Chicago neighborhoods",
+      "Use H1 with primary keyword on every page (e.g., 'Emergency Plumber in Chicago, IL')",
+      "Meta title and description optimized for every page",
+      "Add LocalBusiness + Plumber JSON-LD schema on homepage",
+      "Add FAQPage schema on FAQ page",
+      "Add BreadcrumbList schema on service pages",
+      "Use alt text on all images with keywords",
+      "Create a blog with seasonal Chicago plumbing tips (frozen pipes, sump pumps, etc.)",
+      "Build citations on: Angi, HomeAdvisor, Thumbtack, Houzz, BBB, Yelp, Yellow Pages",
+      "Get backlinks from Chicago neighborhood blogs and home improvement directories"
+    ],
+    "technical_seo": [
+      "HTTPS required",
+      "Mobile-first responsive design",
+      "Core Web Vitals optimized (LCP < 2.5s, CLS < 0.1, FID < 100ms)",
+      "XML sitemap submitted to Google Search Console",
+      "Robots.txt configured",
+      "Page speed optimized (compress images, lazy load, minify CSS/JS)",
+      "Canonical tags on all pages"
+    ],
+    "local_seo": [
+      "Consistent NAP across 50+ citation sites",
+      "Embed Google Map on contact page",
+      "Service area schema markup",
+      "Location-specific landing pages",
+      "Reviews schema / aggregate rating markup"
+    ]
+  },
+
+  "website_rebuild_requirements": {
+    "design_direction": "Professional, trustworthy, local feel. Clean blue/white color scheme with bold CTAs. Mobile-first.",
+    "brand_story": "Family-owned Chicago plumber for 25+ years. Eddie Sandoval is the face — personal, honest, affordable. Not a franchise. Real Chicago guy who shows up and does the work right.",
+    "tone": "Confident, personal, trustworthy, plain-spoken. Avoid corporate speak.",
+    "pages_required": [
+      "Home",
+      "About Us / Our Story",
+      "Services (overview)",
+      "Emergency Plumbing",
+      "Drain Cleaning",
+      "Water Heater Repair & Installation",
+      "Leak Detection & Repair",
+      "Sewer Line Services",
+      "Bathroom Plumbing",
+      "Kitchen Plumbing",
+      "Pipe Repair",
+      "Gas Line Services",
+      "Preventive Maintenance",
+      "Service Areas (Chicago neighborhoods)",
+      "Reviews / Testimonials",
+      "FAQ",
+      "Blog",
+      "Contact / Free Estimate",
+      "Spanish version (bilingual toggle or /es/ subdirectory)"
+    ],
+    "must_have_features": [
+      "Sticky header with phone number and 'Request Free Estimate' CTA",
+      "Click-to-call phone button prominent on mobile",
+      "24/7 emergency banner at top of site",
+      "Google Reviews widget (live aggregated stars)",
+      "Yelp reviews integration",
+      "Before/after photo gallery slider",
+      "Team/About section with Eddie's photo and story",
+      "Service area map (Google Maps embed with pinned service zones)",
+      "Instant online quote / contact form",
+      "Live chat or chatbot widget",
+      "Trust badges section (Licensed, Bonded, Insured, 25 Years, 5-Star Rating)",
+      "FAQ accordion section",
+      "Blog with plumbing tips",
+      "Pricing transparency page or section",
+      "Satisfaction guarantee badge",
+      "Social proof counter (300+ 5-star reviews)",
+      "WhatsApp / text message CTA (Hispanic community preference)"
+    ],
+    "conversion_optimization": [
+      "Hero section with main CTA above the fold: 'Get a Free Estimate — Call Now or Book Online'",
+      "Social proof immediately below hero (star rating + review count)",
+      "Emergency section with red/urgent styling and large phone number",
+      "Benefits bar: '24/7 Service | Free Estimates | Licensed & Insured | Family-Owned Since 1999'",
+      "Multiple CTAs throughout all pages",
+      "Exit-intent popup for lead capture",
+      "Sticky mobile bottom bar with call + form buttons"
+    ]
+  },
+
+  "additional_opportunities": [
+    {
+      "opportunity": "Spanish-Language Marketing",
+      "detail": "Irving Park (60618) and surrounding neighborhoods (Avondale, Hermosa, Belmont-Cragin) are 60-80% Hispanic. No top Chicago plumber competitor has a Spanish website. Sandoval is already a Hispanic-owned business — this is a massive untapped SEO and trust advantage.",
+      "action": "Bilingual website with /es/ Spanish pages and Spanish GMB description"
+    },
+    {
+      "opportunity": "Google Local Service Ads (LSAs)",
+      "detail": "LSAs show above regular search results for plumber queries. They require license verification. With 300+ reviews, Sandoval would earn a Google Guarantee badge that massively increases CTR.",
+      "action": "Apply for Google Local Service Ads and Google Guaranteed badge after website launch"
+    },
+    {
+      "opportunity": "Before/After Photo Content",
+      "detail": "Reviews mention dramatic transformations (full house re-plumbing from DIY disasters). These make excellent visual content for the website and social media.",
+      "action": "Photo documentation policy for every job — feed website gallery and Instagram"
+    },
+    {
+      "opportunity": "YouTube / Short-Form Video",
+      "detail": "Eddie is mentioned by name repeatedly in reviews. A personable, named plumber who explains things is perfect for short educational videos (TikTok/Reels/YouTube Shorts).",
+      "action": "Eddie-hosted video series: 'Chicago plumbing tips' — drives SEO and brand humanization"
+    },
+    {
+      "opportunity": "Email/SMS Follow-up System",
+      "detail": "No current CRM. After each job, automated follow-up requesting a Google review would amplify already strong review velocity.",
+      "action": "Simple CRM or ServiceTitan/Jobber integration with auto-review request SMS"
+    },
+    {
+      "opportunity": "Seasonal SEO Content",
+      "detail": "Chicago has extreme winters. 'Frozen pipe repair Chicago', 'burst pipe Chicago winter', 'sump pump before spring' are high-intent seasonal keywords competitors are ranking for.",
+      "action": "Blog editorial calendar aligned with Chicago weather cycles"
+    },
+    {
+      "opportunity": "BBB Accreditation",
+      "detail": "Vanguard (main competitor) has A+ BBB. Sandoval has no BBB presence found. BBB accreditation provides trust signal and citation backlink.",
+      "action": "Apply for BBB accreditation"
+    },
+    {
+      "opportunity": "Financing / Payment Options Page",
+      "detail": "No current information about payment methods. Vanguard lists payment options. For larger jobs (water heater, sewer line), financing helps close sales.",
+      "action": "Add payment/financing section: accepted methods, possibly offer Wisetack or GreenSky financing"
+    }
+  ]
+}
