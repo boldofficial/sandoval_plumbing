@@ -1,0 +1,179 @@
+---
+import { Image } from 'astro:assets';
+import serviceHero from '../../assets/hero-placeholder.jpg';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import BeforeAfterSlider from '../../components/islands/BeforeAfterSlider';
+import FAQAccordion from '../../components/islands/FAQAccordion';
+import ContactForm from '../../components/islands/ContactForm';
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews');
+const reviewQuote = reviews.find((r) => r.data.rating >= 5);
+
+const faqs = [
+  {
+    question: 'How do you find hidden water leaks?',
+    answer:
+      'We use a combination of acoustic listening devices, thermal imaging cameras, pressure testing, and video pipe inspection to locate leaks without damaging your walls or floors.',
+  },
+  {
+    question: 'Will my insurance cover leak detection and repair?',
+    answer:
+      'Most homeowners insurance policies cover water damage from sudden leaks but may not cover damage from gradual leaks. Your policy determines coverage. We can provide documentation for your insurance claim.',
+  },
+  {
+    question: 'How much does leak detection cost?',
+    answer:
+      'The cost depends on the complexity of locating the leak. We provide a free estimate before any work begins. In many cases, the cost of detection is far less than the cost of water damage from an undetected leak.',
+  },
+  {
+    question: 'Can a small leak really cause that much damage?',
+    answer:
+      'Absolutely. A leak of just 10 drops per minute wastes 500+ gallons per year. A pinhole leak in a supply line can spray 250+ gallons per day — causing extensive structural damage, mold, and higher utility bills.',
+  },
+  {
+    question: 'What is a slab leak and do you repair them?',
+    answer:
+      'A slab leak is a leak in a pipe running under your concrete foundation. Yes, we detect and repair slab leaks. We use non-destructive methods to locate the leak and can often repair it with minimal disruption to your floor.',
+  },
+];
+---
+
+<ServiceLayout
+  title="Leak Detection & Repair in Chicago, IL | Sandoval Plumbing"
+  description="Professional leak detection in Chicago. We find hidden water leaks using thermal imaging, acoustic listening, and video inspection. Call (773) 610-3344."
+  serviceName="Leak Detection"
+>
+  {/* Hero image */}
+  <div class="relative h-56 md:h-72 rounded-xl overflow-hidden mb-8">
+    <Image
+      src={serviceHero}
+      alt="Leak detection by Sandoval Plumbing in Chicago"
+      width={800}
+      height={400}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute bottom-4 left-6 text-white">
+      <p class="text-sm font-semibold opacity-80">Leak Detection & Repair</p>
+    </div>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue mb-6">
+    Leak Detection & Repair in Chicago
+  </h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    Hidden water leaks can silently cause thousands of dollars in damage before you even know they
+    exist. Sandoval Plumbing uses advanced technology to find leaks quickly and accurately — without
+    guesswork or unnecessary demolition.
+  </p>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">
+    Signs You Need Leak Detection
+  </h2>
+  <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-8">
+    <li>Unexplained increase in water bills</li>
+    <li>Water stains on ceilings or walls</li>
+    <li>Sound of running water when fixtures are off</li>
+    <li>Musty odors or visible mold growth</li>
+    <li>Cracks in foundation or walls</li>
+    <li>Low water pressure throughout the house</li>
+  </ul>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">What We Do</h2>
+  <ol class="list-decimal pl-6 space-y-3 text-gray-600 mb-8">
+    <li>
+      <strong class="text-brand-blue">Listen:</strong> Acoustic sensors detect the sound of water escaping
+      from pipes.
+    </li>
+    <li>
+      <strong class="text-brand-blue">See:</strong> Thermal imaging cameras find temperature differences
+      caused by hidden leaks.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Test:</strong> Pressure testing isolates sections of pipe to pinpoint
+      the exact leak location.
+    </li>
+    <li>
+      <strong class="text-brand-blue">Repair:</strong> We fix the leak with minimal disruption and clean
+      up completely.
+    </li>
+  </ol>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Why Choose Sandoval</h2>
+  <ul class="space-y-2 text-gray-600 mb-8">
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Non-destructive detection — no breaking open walls unnecessarily</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Licensed and insured for all repair work</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Same-day emergency service available</span>
+    </li>
+  </ul>
+
+  <div class="mb-8">
+    <BeforeAfterSlider
+      client:visible
+      beforeImage="https://picsum.photos/seed/leak-before/800/600"
+      afterImage="https://picsum.photos/seed/leak-after/800/600"
+      beforeLabel="Hidden Leak"
+      afterLabel="Repaired"
+    />
+  </div>
+
+  {/* Related review quote */}
+  {
+    reviewQuote && (
+      <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl shrink-0" aria-hidden="true">
+            ⭐
+          </span>
+          <div>
+            <p class="text-gray-600 italic leading-relaxed mb-3">
+              &ldquo;{reviewQuote.body}&rdquo;
+            </p>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm text-brand-blue">
+                — {reviewQuote.data.reviewer}
+              </span>
+              <span
+                class="text-yellow-400 text-sm"
+                aria-label={`${reviewQuote.data.rating} out of 5 stars`}
+              >
+                {'★'.repeat(reviewQuote.data.rating)}
+              </span>
+              <span class="text-xs text-gray-400">
+                {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
+              </span>
+              {reviewQuote.data.verified && (
+                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="mb-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
+    <FAQAccordion client:visible faqs={faqs} />
+  </div>
+
+  <div class="bg-brand-lightgray rounded-xl p-6 md:p-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Request a Free Estimate</h2>
+    <ContactForm client:visible />
+  </div>
+</ServiceLayout>
