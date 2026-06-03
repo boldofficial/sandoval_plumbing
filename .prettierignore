@@ -1,0 +1,13 @@
+node_modules
+dist
+.astro
+.git
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
