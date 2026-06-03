@@ -1,4 +1,5 @@
 # AGENT PROMPT: Full Website Rebuild — Sandoval Plumbing, Chicago IL
+
 ## Built with Astro
 
 ---
@@ -40,6 +41,7 @@ This site is built with **Astro**. Read and apply all Astro-specific guidance in
 ### Why Astro for This Project
 
 Astro is the right choice for a local business site like this because:
+
 - **Zero JS by default** — only ship JavaScript for interactive components (forms, accordions, sliders). The rest is static HTML.
 - **Excellent Core Web Vitals** — Google rewards fast-loading local business sites with better rankings. Astro's output is highly optimized.
 - **Content Collections** — blog posts and reviews are managed as typed Markdown/MDX files, not hardcoded strings.
@@ -70,8 +72,8 @@ npx astro add mdx          # Blog posts and rich content pages
 Install additional packages:
 
 ```bash
-npm install @astrojs/image  # Image optimization (WebP conversion, lazy loading)
-npm install sharp           # Required by @astrojs/image for build-time processing
+npm install sharp           # Required by astro:assets for build-time processing
+npm install @tailwindcss/typography  # For blog post prose styling
 ```
 
 ### `astro.config.mjs` — Full Configuration
@@ -85,23 +87,18 @@ import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://sandovalplumbingchicago.com',
-  integrations: [
-    react(),
-    tailwind(),
-    sitemap(),
-    mdx(),
-  ],
+  integrations: [react(), tailwind(), sitemap(), mdx()],
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
     routing: {
-      prefixDefaultLocale: false,  // English at /, Spanish at /es/
+      prefixDefaultLocale: false, // English at /, Spanish at /es/
     },
   },
   image: {
     service: { entrypoint: 'astro/assets/services/sharp' },
   },
-  output: 'static',  // Full static build — deploy to Netlify, Vercel, or Cloudflare Pages
+  output: 'static', // Full static build — deploy to Netlify, Vercel, or Cloudflare Pages
 });
 ```
 
@@ -140,14 +137,14 @@ sandoval-plumbing/
 │   │   │   ├── BlogCard.astro
 │   │   │   └── ServiceAreaMap.astro
 │   │   └── islands/                 # Interactive components — React, hydrated client-side
-│   │       ├── ContactForm.tsx      # client:load
+│   │       ├── ContactForm.tsx      # client:visible
 │   │       ├── FAQAccordion.tsx     # client:visible
 │   │       ├── BeforeAfterSlider.tsx # client:visible
 │   │       ├── MobileNav.tsx        # client:load
 │   │       ├── ExitIntentPopup.tsx  # client:idle
 │   │       └── StickyMobileFooter.tsx # client:load
+│   ├── content.config.ts            # Content Collections schema (Astro 6)
 │   ├── content/
-│   │   ├── config.ts                # Content Collections schema
 │   │   ├── blog/
 │   │   │   ├── frozen-pipes-chicago.mdx
 │   │   │   ├── water-heater-replacement.mdx
@@ -159,7 +156,7 @@ sandoval-plumbing/
 │   │   └── services/
 │   │       ├── emergency-plumbing.md
 │   │       ├── drain-cleaning.md
-│   │       └── [all 12 services].md
+│   │       └── [all 10 services].md
 │   ├── layouts/
 │   │   ├── BaseLayout.astro         # <html>, <head>, meta tags, schema, GA
 │   │   ├── PageLayout.astro         # BaseLayout + Header + Footer
@@ -207,15 +204,15 @@ sandoval-plumbing/
 
 ### `.astro` Files vs. React Islands — When to Use Each
 
-| Need | Use |
-|---|---|
-| Static markup, no interactivity | `.astro` component |
-| Renders once at build time | `.astro` component |
-| Needs `useState`, `useEffect`, event handlers | React `.tsx` island |
-| SEO-critical content (H1, meta, schema) | Always `.astro` — never hide in a React component |
-| Forms with validation, error states | React `.tsx` island |
-| Accordion, tabs, sliders | React `.tsx` island |
-| Header nav (desktop static + mobile hamburger) | Header in `.astro`, MobileNav as React island |
+| Need                                           | Use                                               |
+| ---------------------------------------------- | ------------------------------------------------- |
+| Static markup, no interactivity                | `.astro` component                                |
+| Renders once at build time                     | `.astro` component                                |
+| Needs `useState`, `useEffect`, event handlers  | React `.tsx` island                               |
+| SEO-critical content (H1, meta, schema)        | Always `.astro` — never hide in a React component |
+| Forms with validation, error states            | React `.tsx` island                               |
+| Accordion, tabs, sliders                       | React `.tsx` island                               |
+| Header nav (desktop static + mobile hamburger) | Header in `.astro`, MobileNav as React island     |
 
 **Rule:** If a component can be static, make it `.astro`. Only reach for React when you need browser interactivity. This keeps the JS bundle small and Core Web Vitals high — which directly helps Google rankings for a local business.
 
@@ -243,14 +240,13 @@ const services = await getCollection('services');
 <section class="py-16 bg-gray-50">
   <h2 class="text-3xl font-bold text-center mb-8">{title}</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {services.map(service => (
-      <ServiceCard service={service} />
-    ))}
+    {services.map((service) => <ServiceCard service={service} />)}
   </div>
 </section>
 ```
 
 **Key rules for `.astro` files:**
+
 - The frontmatter (between `---`) runs **at build time**, not in the browser. No `window`, no `document` here.
 - Use `{expression}` for dynamic values, `{array.map(...)}` for lists.
 - Use `<slot />` for composable layout components.
@@ -278,7 +274,8 @@ React island components are mounted with a `client:*` directive. Choose carefull
 <StickyMobileFooter client:media="(max-width: 768px)" />
 
 <!-- No hydration — renders to static HTML only, no JS shipped -->
-<StaticBanner client:only="react" />   <!-- use sparingly -->
+<StaticBanner client:only="react" />
+<!-- use sparingly -->
 ```
 
 **For this project:** The heavy interactive components (contact form, FAQ accordion, before/after slider) should all be `client:visible`. The mobile nav and sticky footer should be `client:load`. The exit-intent popup should be `client:idle`.
@@ -301,7 +298,7 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   lang?: 'en' | 'es';
-  schema?: object;  // Pass page-specific JSON-LD here
+  schema?: object; // Pass page-specific JSON-LD here
 }
 
 const {
@@ -317,41 +314,41 @@ const siteUrl = 'https://sandovalplumbingchicago.com';
 
 // LocalBusiness schema — included on every page
 const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "Plumber",
-  "name": "Sandoval Plumbing",
-  "telephone": "+17736103344",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "3922 N Bernard St",
-    "addressLocality": "Chicago",
-    "addressRegion": "IL",
-    "postalCode": "60618",
-    "addressCountry": "US"
+  '@context': 'https://schema.org',
+  '@type': 'Plumber',
+  name: 'Sandoval Plumbing',
+  telephone: '+17736103344',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '3922 N Bernard St',
+    addressLocality: 'Chicago',
+    addressRegion: 'IL',
+    postalCode: '60618',
+    addressCountry: 'US',
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 41.9527077,
-    "longitude": -87.7143835
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 41.9527077,
+    longitude: -87.7143835,
   },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-    "opens": "00:00",
-    "closes": "23:59"
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00',
+    closes: '23:59',
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "306"
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '306',
   },
-  "priceRange": "$$",
-  "areaServed": "Chicago, IL",
-  "url": siteUrl
+  priceRange: '$$',
+  areaServed: 'Chicago, IL',
+  url: siteUrl,
 };
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
@@ -381,7 +378,9 @@ const localBusinessSchema = {
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
       gtag('config', 'G-XXXXXXXXXX');
     </script>
@@ -459,13 +458,14 @@ const { serviceName, ...layoutProps } = Astro.props;
 
 ## CONTENT COLLECTIONS
 
-Content Collections give you typed, validated content for blog posts, reviews, and services. Define schemas in `src/content/config.ts`:
+Content Collections give you typed, validated content for blog posts, reviews, and services. Define schemas in `src/content.config.ts` (Astro 6) or `src/content/config.ts` (Astro 5):
 
 ```ts
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const blog = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -479,7 +479,7 @@ const blog = defineCollection({
 });
 
 const reviews = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/reviews' }),
   schema: z.object({
     reviewer: z.string(),
     rating: z.number().min(1).max(5),
@@ -490,12 +490,12 @@ const reviews = defineCollection({
 });
 
 const services = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/services' }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
     description: z.string(),
-    icon: z.string(),  // SVG icon name or emoji
+    icon: z.string(), // SVG icon name or emoji
     order: z.number(), // For display ordering
     emergency: z.boolean().default(false),
   }),
@@ -511,8 +511,9 @@ export const collections = { blog, reviews, services };
 import { getCollection, getEntry } from 'astro:content';
 
 // Get all blog posts, sorted newest first
-const posts = (await getCollection('blog'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 
 // Get all reviews for the reviews page
 const reviews = await getCollection('reviews');
@@ -526,13 +527,13 @@ const emergencyService = await getEntry('services', 'emergency-plumbing');
 
 ```mdx
 ---
-title: "How to Prevent Frozen Pipes in Chicago This Winter"
-description: "Chicago winters are brutal on plumbing. Learn how to protect your pipes from freezing — and what to do if they burst."
+title: 'How to Prevent Frozen Pipes in Chicago This Winter'
+description: 'Chicago winters are brutal on plumbing. Learn how to protect your pipes from freezing — and what to do if they burst.'
 pubDate: 2024-11-15
-author: "Eduardo Sandoval"
-tags: ["winter", "emergency", "prevention", "chicago"]
-image: "/images/blog/frozen-pipes.jpg"
-imageAlt: "Frozen pipe with ice buildup in a Chicago home basement"
+author: 'Eduardo Sandoval'
+tags: ['winter', 'emergency', 'prevention', 'chicago']
+image: '/images/blog/frozen-pipes.jpg'
+imageAlt: 'Frozen pipe with ice buildup in a Chicago home basement'
 ---
 
 ## Why Chicago Winters Are Hard on Your Pipes
@@ -549,7 +550,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map(post => ({
+  return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));
@@ -579,8 +580,12 @@ These are the only components that ship JavaScript to the browser. Keep them lea
 import { useState } from 'react';
 
 type ServiceType =
-  | 'emergency' | 'drain-cleaning' | 'water-heater'
-  | 'leak-detection' | 'sewer-line' | 'other';
+  | 'emergency'
+  | 'drain-cleaning'
+  | 'water-heater'
+  | 'leak-detection'
+  | 'sewer-line'
+  | 'other';
 
 interface FormState {
   name: string;
@@ -594,8 +599,13 @@ interface FormState {
 
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>({
-    name: '', phone: '', email: '', service: '',
-    description: '', preferredContact: 'call', zip: '',
+    name: '',
+    phone: '',
+    email: '',
+    service: '',
+    description: '',
+    preferredContact: 'call',
+    zip: '',
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
@@ -615,7 +625,10 @@ export default function ContactForm() {
         <h3 className="text-xl font-bold text-green-800">Request Received!</h3>
         <p className="text-green-700 mt-2">
           We'll call you back within 60 minutes. For emergencies, call{' '}
-          <a href="tel:+17736103344" className="font-bold underline">(773) 610-3344</a>.
+          <a href="tel:+17736103344" className="font-bold underline">
+            (773) 610-3344
+          </a>
+          .
         </p>
       </div>
     );
@@ -667,9 +680,7 @@ export default function FAQAccordion({ faqs }: Props) {
             <span className="ml-4 text-blue-700">{openIndex === i ? '−' : '+'}</span>
           </button>
           {openIndex === i && (
-            <div className="pb-4 text-gray-600 leading-relaxed">
-              {faq.answer}
-            </div>
+            <div className="pb-4 text-gray-600 leading-relaxed">{faq.answer}</div>
           )}
         </div>
       ))}
@@ -685,7 +696,10 @@ export default function FAQAccordion({ faqs }: Props) {
 import FAQAccordion from '../../components/islands/FAQAccordion';
 
 const faqs = [
-  { question: "Do you offer 24/7 emergency plumbing?", answer: "Yes — call (773) 610-3344 any time." },
+  {
+    question: 'Do you offer 24/7 emergency plumbing?',
+    answer: 'Yes — call (773) 610-3344 any time.',
+  },
   // ...
 ];
 ---
@@ -711,21 +725,23 @@ Props passed to React island components must be **serializable** (plain objects,
 ## INTERNATIONALIZATION (i18n) — SPANISH PAGE
 
 With the i18n config set in `astro.config.mjs`, Astro handles routing automatically:
+
 - English pages live at `src/pages/` → served at `/`
 - Spanish pages live at `src/pages/es/` → served at `/es/`
 
 ```astro
-<!-- src/pages/es/index.astro -->
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 
 const spanishMeta = {
   title: 'Plomero en Chicago — Disponible 24/7 | Sandoval Plumbing',
-  description: 'Sandoval Plumbing — Su plomero de confianza en Chicago. 25+ años, 300+ reseñas de 5 estrellas. Disponible 24/7. Llame al (773) 610-3344.',
+  description:
+    'Sandoval Plumbing — Su plomero de confianza en Chicago. 25+ años, 300+ reseñas de 5 estrellas. Disponible 24/7. Llame al (773) 610-3344.',
   lang: 'es' as const,
 };
 ---
 
+<!-- src/pages/es/index.astro -->
 <PageLayout {...spanishMeta}>
   <!-- Full Spanish homepage content here -->
   <!-- Keep all phone numbers, addresses, and CTAs identical -->
@@ -752,9 +768,20 @@ import heroImage from '../assets/hero-placeholder.jpg';
   alt="Eddie Sandoval, licensed plumber, working on pipes in a Chicago home"
   width={1200}
   height={600}
-  loading="eager"     <!-- Above the fold: eager. Everything else: lazy (default) -->
-  class="w-full h-auto object-cover rounded-lg"
-/>
+  loading="eager"
+  <!--
+  Above
+  the
+  fold:
+  eager.
+  Everything
+  else:
+  lazy
+  (default)
+  --
+>
+  class="w-full h-auto object-cover rounded-lg" /></Image
+>
 ```
 
 For images in `public/` (not processed by Astro), use a plain `<img>` tag with `loading="lazy"` and explicit `width`/`height` to prevent layout shift:
@@ -770,6 +797,7 @@ For images in `public/` (not processed by Astro), use a plain `<img>` tag with `
 ```
 
 **Rules:**
+
 - All images in `src/assets/` → use `<Image>` from `astro:assets`
 - All images in `public/images/` → use plain `<img>` with `loading="lazy"`
 - Every `<img>` and `<Image>` must have descriptive `alt` text with keywords
@@ -785,29 +813,29 @@ For images in `public/` (not processed by Astro), use a plain `<img>` tag with `
 Pass page-specific schema to `BaseLayout` via the `schema` prop:
 
 ```astro
-<!-- FAQ page -->
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 
 const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer,
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
     },
   })),
 };
 ---
 
+<!-- FAQ page -->
 <PageLayout
   title="Plumbing FAQs — Sandoval Plumbing Chicago"
   description="Answers to common plumbing questions from Sandoval Plumbing, Chicago's 24/7 family plumber."
   schema={faqSchema}
->
+/>
 ```
 
 ### Blog Post Schema
@@ -815,18 +843,18 @@ const faqSchema = {
 ```astro
 ---
 const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": post.data.title,
-  "datePublished": post.data.pubDate.toISOString(),
-  "author": {
-    "@type": "Person",
-    "name": post.data.author,
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  datePublished: post.data.pubDate.toISOString(),
+  author: {
+    '@type': 'Person',
+    name: post.data.author,
   },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Sandoval Plumbing",
-    "url": "https://sandovalplumbingchicago.com",
+  publisher: {
+    '@type': 'Organization',
+    name: 'Sandoval Plumbing',
+    url: 'https://sandovalplumbingchicago.com',
   },
 };
 ---
@@ -884,6 +912,7 @@ export default {
 Build every page listed. Each page must have unique meta title, meta description, and H1.
 
 ### PRIMARY PAGES
+
 1. **Home** (`/`)
 2. **About Us** (`/about`)
 3. **Services Overview** (`/services`)
@@ -909,6 +938,7 @@ Build every page listed. Each page must have unique meta title, meta description
 ## PAGE-BY-PAGE SPECIFICATIONS
 
 ### PAGE 1: HOME (`/`)
+
 **Meta Title:** Chicago Plumber — 24/7 Emergency Service | Sandoval Plumbing
 **Meta Description:** Sandoval Plumbing — Chicago's trusted family plumber. 25+ years, 300+ 5-star reviews. Available 24/7 including holidays. Call (773) 610-3344 for a free estimate.
 **H1:** Chicago's Trusted 24/7 Plumber — Fair Prices, Real Results
@@ -916,15 +946,18 @@ Build every page listed. Each page must have unique meta title, meta description
 **Sections (in order):**
 
 **A. TOP ANNOUNCEMENT BAR** (`AnnouncementBar.astro`, red background)
+
 - Text: "🚨 Plumbing Emergency? We're Available 24/7 — Call (773) 610-3344 Now"
 - Mobile: full-width, click-to-call link
 
 **B. STICKY HEADER** (`Header.astro` + `MobileNav.tsx client:load`)
+
 - Logo left, Nav center (Services, About, Reviews, Contact), Phone + CTA button right
 - CTA Button: "Free Estimate" → `/contact`
 - Mobile: hamburger using `MobileNav` React island
 
 **C. HERO SECTION**
+
 - Headline: "Chicago's Trusted 24/7 Plumber"
 - Subheadline: "Family-owned for 25+ years. Eddie Sandoval brings fair pricing and expert service to your door — any time, any day."
 - Two CTAs: [Call Now: (773) 610-3344] [Get Free Estimate →]
@@ -932,20 +965,24 @@ Build every page listed. Each page must have unique meta title, meta description
 - Background: `<Image>` hero placeholder with `loading="eager"`
 
 **D. TRUST BADGES BAR** (`TrustBadges.astro`)
+
 - ✅ Licensed & Insured
 - ✅ 24/7 Emergency Service
 - ✅ Family-Owned 25+ Years
 - ✅ Free Estimates
 
 **E. WHY SANDOVAL SECTION**
+
 - Headline: "Why Hundreds of Chicago Homeowners Choose Sandoval"
 - 3-column cards (static `.astro`)
 
 **F. SERVICES GRID**
+
 - Query `getCollection('services')` — map to `<ServiceCard>` components
 - 3×4 grid, each card links to its service page
 
 **G. SOCIAL PROOF / REVIEWS SECTION**
+
 - Query `getCollection('reviews')` — display 4–6 `<ReviewCard>` components
 - Real review content from research:
   - "Sandoval saved me from a $2,000 repair quote from a larger company — fixed it for a fraction of the cost." — Jennifer B. ⭐⭐⭐⭐⭐
@@ -955,25 +992,31 @@ Build every page listed. Each page must have unique meta title, meta description
 - "See All 300+ Reviews →" → `/reviews`
 
 **H. SERVICE AREA MAP** (`ServiceAreaMap.astro`)
+
 - Google Maps iframe centered on 3922 N Bernard St, Chicago IL 60618
 - Neighborhood chips below map
 
 **I. ABOUT SNIPPET**
+
 - `<Image>` placeholder for Eddie
 - Quote: "I'm Eddie Sandoval. I've been fixing Chicago's plumbing for over 25 years..."
 - "Read Our Story →" → `/about`
 
 **J. EMERGENCY CTA SECTION** (`EmergencyCTA.astro`, red background)
+
 - "Plumbing Emergency? Don't Wait."
 - `<a href="tel:+17736103344">` button
 
 **K. BLOG PREVIEW**
+
 - Query `getCollection('blog')`, display latest 3 as `<BlogCard>` components
 
 **L. BILINGUAL CTA**
+
 - "¿Hablas español? También ofrecemos servicio en español." → `/es`
 
 **M. FOOTER** (`Footer.astro`)
+
 - Logo, address, phone, hours, quick links, neighborhoods, social icons
 - License number placeholder
 
@@ -984,6 +1027,7 @@ Build every page listed. Each page must have unique meta title, meta description
 Each service page at `src/pages/services/[service-name].astro` uses `ServiceLayout.astro`.
 
 **Template Structure:**
+
 1. H1: "[Service Name] in Chicago, IL"
 2. `<Image>` hero
 3. Intro paragraph (150–200 words)
@@ -996,6 +1040,7 @@ Each service page at `src/pages/services/[service-name].astro` uses `ServiceLayo
 10. CTA: `EmergencyCTA.astro` + `ContactForm` React island (`client:visible`)
 
 **Service-Specific Notes:**
+
 - **Emergency Plumbing:** Lead with urgency. Red styling. Large phone number. List: burst pipes, sewage backup, gas leaks, flooding. "Average response time: under 60 minutes."
 - **Water Heater:** Mention tank vs. tankless, A.O. Smith / Navien / Rheem expertise, Chicago hard water.
 - **Sewer Line:** Chicago's older clay/cast iron lines, camera inspection, hydro-jetting.
@@ -1064,23 +1109,23 @@ import ContactForm from '../components/islands/ContactForm';
 
 ## REUSABLE COMPONENTS CHECKLIST
 
-| Component | Type | Hydration |
-|---|---|---|
-| `Header.astro` | Astro | Static |
-| `Footer.astro` | Astro | Static |
-| `AnnouncementBar.astro` | Astro | Static |
-| `ServiceCard.astro` | Astro | Static |
-| `ReviewCard.astro` | Astro | Static |
-| `TrustBadges.astro` | Astro | Static |
-| `EmergencyCTA.astro` | Astro | Static |
-| `BlogCard.astro` | Astro | Static |
-| `ServiceAreaMap.astro` | Astro | Static (iframe) |
-| `MobileNav.tsx` | React island | `client:load` |
-| `ContactForm.tsx` | React island | `client:visible` |
-| `FAQAccordion.tsx` | React island | `client:visible` |
-| `BeforeAfterSlider.tsx` | React island | `client:visible` |
-| `ExitIntentPopup.tsx` | React island | `client:idle` |
-| `StickyMobileFooter.tsx` | React island | `client:load` |
+| Component                | Type         | Hydration        |
+| ------------------------ | ------------ | ---------------- |
+| `Header.astro`           | Astro        | Static           |
+| `Footer.astro`           | Astro        | Static           |
+| `AnnouncementBar.astro`  | Astro        | Static           |
+| `ServiceCard.astro`      | Astro        | Static           |
+| `ReviewCard.astro`       | Astro        | Static           |
+| `TrustBadges.astro`      | Astro        | Static           |
+| `EmergencyCTA.astro`     | Astro        | Static           |
+| `BlogCard.astro`         | Astro        | Static           |
+| `ServiceAreaMap.astro`   | Astro        | Static (iframe)  |
+| `MobileNav.tsx`          | React island | `client:load`    |
+| `ContactForm.tsx`        | React island | `client:visible` |
+| `FAQAccordion.tsx`       | React island | `client:visible` |
+| `BeforeAfterSlider.tsx`  | React island | `client:visible` |
+| `ExitIntentPopup.tsx`    | React island | `client:idle`    |
+| `StickyMobileFooter.tsx` | React island | `client:load`    |
 
 ---
 
@@ -1122,11 +1167,13 @@ For form submissions: use **Netlify Forms** (add `data-netlify="true"` to the fo
 ## CONTENT TONE EXAMPLES
 
 **Do write like this:**
+
 - "Call Eddie directly — not a robot, not a dispatcher."
 - "We've been fixing Chicago's pipes since before you moved here."
 - "You'll always know what you're paying before we start."
 
 **Don't write like this:**
+
 - "We leverage cutting-edge synergies to deliver optimal plumbing solutions."
 - "Our team of professionals strives to exceed customer expectations."
 
@@ -1136,35 +1183,35 @@ For form submissions: use **Netlify Forms** (add `data-netlify="true"` to the fo
 
 When complete, the following must exist and work:
 
-- [ ] `astro.config.mjs` with all integrations configured (React, Tailwind, Sitemap, MDX, i18n)
-- [ ] `src/content/config.ts` with schemas for blog, reviews, services
-- [ ] All 19 pages built and linked
-- [ ] All page routes match the file structure exactly
-- [ ] Responsive on mobile, tablet, desktop (Tailwind breakpoints)
-- [ ] All forms functional or marked with backend integration notes
-- [ ] All phone numbers use `<a href="tel:+17736103344">`
-- [ ] `BaseLayout.astro` injects LocalBusiness JSON-LD on every page
-- [ ] FAQ page has FAQPage JSON-LD schema
-- [ ] Blog posts have BlogPosting JSON-LD schema
-- [ ] Meta tags (title, description, og:*, canonical) on all pages
-- [ ] Blog listing + 3 full MDX posts in Content Collections
-- [ ] Spanish homepage at `/es`
-- [ ] 5 service area sub-pages
-- [ ] FAQ page with `FAQAccordion` island
-- [ ] Reviews page querying Content Collections
-- [ ] `BeforeAfterSlider` island on service pages
-- [ ] `EmergencyCTA` on every page (via layout or directly)
-- [ ] Google Maps iframe on contact and service area pages
-- [ ] WhatsApp floating button (mobile)
-- [ ] `StickyMobileFooter` island (mobile)
-- [ ] `ExitIntentPopup` island (desktop)
-- [ ] `TrustBadges` on homepage
-- [ ] `Footer.astro` with complete info
-- [ ] `robots.txt` in `public/`
-- [ ] Sitemap auto-generated by `@astrojs/sitemap`
-- [ ] All images use `<Image>` from `astro:assets` with descriptive alt text
-- [ ] Tailwind config extends brand colors and fonts
-- [ ] Facebook page link NOT included anywhere (it is broken)
+- [x] `astro.config.mjs` with all integrations configured (React, Tailwind, Sitemap, MDX, i18n)
+- [x] `src/content.config.ts` with schemas for blog, reviews, services
+- [x] All 19+ pages built and linked
+- [x] All page routes match the file structure exactly
+- [x] Responsive on mobile, tablet, desktop (Tailwind breakpoints)
+- [x] All forms functional with Netlify Forms (`data-netlify="true"`)
+- [x] All phone numbers use `<a href="tel:+17736103344">`
+- [x] `BaseLayout.astro` injects LocalBusiness JSON-LD on every page
+- [x] FAQ page has FAQPage JSON-LD schema
+- [x] Blog posts have BlogPosting JSON-LD schema
+- [x] Meta tags (title, description, og:\*, canonical) on all pages
+- [x] Blog listing + 3 full MDX posts in Content Collections
+- [x] Spanish homepage at `/es` (full 11-section version)
+- [x] 5 service area sub-pages
+- [x] FAQ page with `FAQAccordion` island
+- [x] Reviews page querying Content Collections
+- [x] `BeforeAfterSlider` island on service pages
+- [x] `EmergencyCTA` on every page (via layout or directly)
+- [x] Google Maps iframe on contact and service area pages
+- [x] WhatsApp floating button (mobile)
+- [x] `StickyMobileFooter` island (mobile)
+- [x] `ExitIntentPopup` island (desktop)
+- [x] `TrustBadges` on homepage
+- [x] `Footer.astro` with complete info (logo, address, phone, hours, links, neighborhoods, social icons, license placeholder)
+- [x] `robots.txt` in `public/`
+- [x] Sitemap auto-generated by `@astrojs/sitemap`
+- [x] Hero + service images use `<Image>` from `astro:assets` with descriptive alt text
+- [x] Tailwind config extends brand colors and fonts
+- [x] Facebook page link NOT included anywhere (it is broken)
 
 ---
 
