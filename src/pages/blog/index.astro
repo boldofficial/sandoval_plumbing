@@ -1,0 +1,48 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import BlogCard from '../../components/ui/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<PageLayout
+  title="Plumbing Blog — Sandoval Plumbing Chicago | Tips & Advice"
+  description="Expert plumbing tips and advice from Sandoval Plumbing. Learn about frozen pipes, water heater maintenance, and emergency preparedness for Chicago homeowners."
+>
+  <section class="py-16 md:py-24 bg-gradient-to-br from-brand-blue/5 to-brand-lightgray">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="max-w-2xl mb-12">
+        <h1 class="text-4xl md:text-5xl font-heading font-bold text-brand-blue mb-4">
+          Chicago Plumbing Tips
+        </h1>
+        <p class="text-gray-600 text-lg">
+          Expert advice from Eddie on keeping your plumbing in top shape through every Chicago
+          season. From frozen pipes to water heater maintenance, we've got you covered.
+        </p>
+      </div>
+
+      {
+        posts.length > 0 ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post) => (
+              <BlogCard
+                title={post.data.title}
+                description={post.data.description}
+                href={`/blog/${post.id.replace(/\.(md|mdx)$/, '')}`}
+                pubDate={post.data.pubDate}
+                tags={post.data.tags}
+              />
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-20">
+            <p class="text-gray-400 text-lg">No blog posts yet. Check back soon!</p>
+          </div>
+        )
+      }
+    </div>
+  </section>
+</PageLayout>
