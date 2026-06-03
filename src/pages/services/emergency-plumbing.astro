@@ -1,0 +1,190 @@
+---
+import { Image } from 'astro:assets';
+import serviceHero from '../../assets/hero-placeholder.jpg';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import BeforeAfterSlider from '../../components/islands/BeforeAfterSlider';
+import FAQAccordion from '../../components/islands/FAQAccordion';
+import ContactForm from '../../components/islands/ContactForm';
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews');
+const reviewQuote = reviews.find((r) => r.data.rating >= 5);
+
+const faqs = [
+  {
+    question: 'How fast can you respond to a plumbing emergency in Chicago?',
+    answer:
+      'Our average response time is under 60 minutes. Since Eddie lives locally and personally handles every call, he can get to your home quickly — any time of day or night.',
+  },
+  {
+    question: 'Do you charge extra for emergency calls on weekends or holidays?',
+    answer:
+      'No. Unlike large plumbing companies that charge double or triple for weekend and holiday service, we charge the same fair rate 24/7/365.',
+  },
+  {
+    question: 'What qualifies as a plumbing emergency?',
+    answer:
+      "Burst pipes, sewage backups, gas leaks, flooding, no water, and water heater failure all qualify as emergencies. If you're unsure, call us — we'd rather you call and not need us than wait and have the damage get worse.",
+  },
+  {
+    question: 'Do I need to turn off my water before you arrive?',
+    answer:
+      "If you can safely shut off the main water valve, do so. This minimizes damage before we arrive. If you can't find or turn the valve, don't worry — we'll handle it.",
+  },
+  {
+    question: 'What should I do if I have a gas leak?',
+    answer:
+      'Evacuate immediately and call 911 from outside. Do not use any electrical switches, phones, or appliances. Once the area is safe, call us for gas line repair.',
+  },
+];
+---
+
+<ServiceLayout
+  title="Emergency Plumbing in Chicago, IL — 24/7 Service | Sandoval Plumbing"
+  description="Need an emergency plumber in Chicago? Sandoval Plumbing offers 24/7 emergency service with 60-minute response. Call (773) 610-3344 now."
+  serviceName="Emergency Plumbing"
+>
+  {/* Hero image */}
+  <div class="relative h-56 md:h-72 rounded-xl overflow-hidden mb-8">
+    <Image
+      src={serviceHero}
+      alt="Emergency plumbing service by Sandoval Plumbing in Chicago"
+      width={800}
+      height={400}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute bottom-4 left-6 text-white">
+      <p class="text-sm font-semibold opacity-80">24/7 Emergency Plumbing</p>
+    </div>
+  </div>
+
+  <h1 class="text-3xl md:text-4xl font-heading font-bold text-brand-blue mb-6">
+    Emergency Plumber in Chicago, IL <span class="text-brand-red">— Available 24/7</span>
+  </h1>
+
+  <div class="bg-brand-red/10 border border-brand-red/20 rounded-xl p-6 mb-8">
+    <p class="text-lg font-bold text-brand-red">
+      🚨 Need help now? Call (773) 610-3344 — Average response time: under 60 minutes.
+    </p>
+  </div>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    When a plumbing emergency strikes, every minute counts. Sandoval Plumbing offers true 24/7
+    emergency service — including nights, weekends, and holidays. Eddie answers the phone personally
+    and responds fast to stop the damage and fix the problem.
+  </p>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">
+    Signs You Need Emergency Plumbing
+  </h2>
+  <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-8">
+    <li>Burst or frozen pipes — especially during Chicago winters</li>
+    <li>Sewage backup — wastewater coming up through drains</li>
+    <li>Gas leak — smell of natural gas or hissing sound</li>
+    <li>Major flooding — water pouring from pipes or fixtures</li>
+    <li>No water — complete loss of water supply</li>
+    <li>Water heater failure — no hot water, leaking tank</li>
+  </ul>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">What We Do</h2>
+  <ol class="list-decimal pl-6 space-y-3 text-gray-600 mb-8">
+    <li>
+      <strong class="text-brand-blue">You Call:</strong> Eddie answers personally — no voicemail, no dispatcher.
+    </li>
+    <li>
+      <strong class="text-brand-blue">We Arrive:</strong> Within 60 minutes, anywhere in Chicagoland.
+    </li>
+    <li>
+      <strong class="text-brand-blue">We Diagnose:</strong> We find the problem and explain what's needed.
+    </li>
+    <li>
+      <strong class="text-brand-blue">You Approve:</strong> We give you a firm price before any work begins.
+    </li>
+    <li>
+      <strong class="text-brand-blue">We Fix It:</strong> Fast, professional repair with cleanup included.
+    </li>
+  </ol>
+
+  <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">
+    Why Choose Sandoval for Emergencies
+  </h2>
+  <ul class="space-y-2 text-gray-600 mb-8">
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>True 24/7 availability — we never close, never charge extra for holidays</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Eddie personally responds — not a franchise technician</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <span>Fair pricing — we save you 3-6x vs. large emergency plumbing companies</span>
+    </li>
+  </ul>
+
+  <div class="mb-8">
+    <BeforeAfterSlider
+      client:visible
+      beforeImage="https://picsum.photos/seed/emergency-before/800/600"
+      afterImage="https://picsum.photos/seed/emergency-after/800/600"
+      beforeLabel="Emergency Situation"
+      afterLabel="Repaired"
+    />
+  </div>
+
+  {/* Related review quote */}
+  {
+    reviewQuote && (
+      <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl shrink-0" aria-hidden="true">
+            ⭐
+          </span>
+          <div>
+            <p class="text-gray-600 italic leading-relaxed mb-3">
+              &ldquo;{reviewQuote.body}&rdquo;
+            </p>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm text-brand-blue">
+                — {reviewQuote.data.reviewer}
+              </span>
+              <span
+                class="text-yellow-400 text-sm"
+                aria-label={`${reviewQuote.data.rating} out of 5 stars`}
+              >
+                {'★'.repeat(reviewQuote.data.rating)}
+              </span>
+              <span class="text-xs text-gray-400">
+                {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
+              </span>
+              {reviewQuote.data.verified && (
+                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="mb-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Frequently Asked Questions</h2>
+    <FAQAccordion client:visible faqs={faqs} />
+  </div>
+
+  <div class="bg-brand-lightgray rounded-xl p-6 md:p-8">
+    <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Get Emergency Help Now</h2>
+    <p class="text-gray-600 mb-6">
+      Fill out the form and we'll call you back within 60 minutes. For immediate help, call (773)
+      610-3344.
+    </p>
+    <ContactForm client:visible />
+  </div>
+</ServiceLayout>
