@@ -1,0 +1,71 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import ServiceCard from '../../components/ui/ServiceCard.astro';
+import EmergencyCTA from '../../components/ui/EmergencyCTA.astro';
+import { getCollection } from 'astro:content';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+const emergencyServices = services.filter((s) => s.data.emergency);
+const standardServices = services.filter((s) => !s.data.emergency);
+---
+
+<PageLayout
+  title="Plumbing Services — Sandoval Plumbing Chicago | 24/7 Emergency Service"
+  description="Full-service plumbing in Chicago. Emergency plumbing, drain cleaning, water heater repair, sewer line services, and more. Available 24/7. Call (773) 610-3344."
+>
+  <section class="py-16 md:py-24 bg-gradient-to-br from-brand-blue/5 to-brand-lightgray">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-heading font-bold text-brand-blue text-center mb-4">
+        Our Plumbing Services
+      </h1>
+      <p class="text-gray-600 text-center text-lg max-w-2xl mx-auto mb-12">
+        Residential and commercial plumbing for Chicago homeowners. From emergency repairs to
+        preventive maintenance, we do it all.
+      </p>
+
+      <!-- Emergency services -->
+      {
+        emergencyServices.length > 0 && (
+          <>
+            <h2 class="text-2xl font-heading font-bold text-brand-red mb-6 flex items-center gap-2">
+              <span aria-hidden="true">🚨</span> 24/7 Emergency Services
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              {emergencyServices.map((service) => (
+                <ServiceCard
+                  title={service.data.title}
+                  description={service.data.description}
+                  icon={service.data.icon}
+                  href={`/services/${service.data.slug}`}
+                  emergency={true}
+                />
+              ))}
+            </div>
+          </>
+        )
+      }
+
+      <!-- Standard services -->
+      <h2 class="text-2xl font-heading font-bold text-brand-blue mb-6">All Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          standardServices.map((service) => (
+            <ServiceCard
+              title={service.data.title}
+              description={service.data.description}
+              icon={service.data.icon}
+              href={`/services/${service.data.slug}`}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <EmergencyCTA />
+    </div>
+  </section>
+</PageLayout>
