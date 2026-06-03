@@ -1,0 +1,106 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import FAQAccordion from '../components/islands/FAQAccordion';
+import { faqPageSchema } from '../utils/schema';
+import EmergencyCTA from '../components/ui/EmergencyCTA.astro';
+
+const faqs = [
+  {
+    question: 'How much does it cost to hire a plumber in Chicago?',
+    answer:
+      "Costs vary depending on the job, but Sandoval Plumbing typically saves homeowners 3–6x compared to large plumbing companies. We provide free estimates upfront — you'll know the price before any work begins. There are no hidden fees, no surprise charges, and we never recommend unnecessary work.",
+  },
+  {
+    question: 'Do you offer emergency plumbing service 24/7?',
+    answer:
+      'Yes! We offer true 24/7 emergency service — including nights, weekends, and holidays. When you call, Eddie answers directly and responds within 60 minutes on average. Call (773) 610-3344 anytime.',
+  },
+  {
+    question: 'Are you licensed and insured in Illinois?',
+    answer:
+      "Yes, Sandoval Plumbing is fully licensed and insured in the state of Illinois. We carry general liability insurance and workers' compensation coverage. License number available upon request.",
+  },
+  {
+    question: 'What neighborhoods do you serve?',
+    answer:
+      "We serve Irving Park, Logan Square, Avondale, Roscoe Village, Wicker Park, Bucktown, Lakeview, Lincoln Square, North Center, Belmont-Cragin, Hermosa, Portage Park, and all of Chicagoland. If you're in the Chicago area, give us a call — we'll come to you.",
+  },
+  {
+    question: 'How quickly can you respond to an emergency?',
+    answer:
+      'Our average response time is under 60 minutes. Since Eddie personally handles every call and lives locally, he can get to your home fast — any time of day or night.',
+  },
+  {
+    question: 'Do you offer free estimates?',
+    answer:
+      "Yes! We provide free, no-obligation estimates for all plumbing work. We'll assess the issue, explain what needs to be done, and give you a firm price before any work starts. Request your free estimate online or call (773) 610-3344.",
+  },
+  {
+    question: 'What payment methods do you accept?',
+    answer:
+      'We accept cash, credit cards (Visa, Mastercard, Discover, American Express), and debit cards. Payment is due upon completion of the work.',
+  },
+  {
+    question: 'Can you help with both residential and commercial plumbing?',
+    answer:
+      "Yes, we handle both residential and commercial plumbing. From single-family homes in Chicago's neighborhoods to commercial properties, restaurants, and multi-unit buildings — Eddie has experience with it all.",
+  },
+  {
+    question: 'What should I do if I have a burst pipe?',
+    answer:
+      "First, shut off the main water valve to stop the flow. Then call Sandoval Plumbing immediately at (773) 610-3344. If it's a gas leak, evacuate the building and call 911 first. Don't attempt to repair burst pipes yourself — the damage can get worse.",
+  },
+  {
+    question: 'Do you speak Spanish? / ¿Habla español?',
+    answer:
+      '¡Sí! Eddie es bilingüe y ofrecemos servicio completo en español. No importa si prefieres comunicarte en inglés o español, estamos aquí para ayudarte. Llama al (773) 610-3344.',
+  },
+  {
+    question: 'How long have you been in business?',
+    answer:
+      "Sandoval Plumbing has been serving Chicago since 1999 — over 25 years. We're a family-owned business that has grown entirely through word-of-mouth and positive reviews from satisfied customers.",
+  },
+  {
+    question: 'Do you charge extra for weekend or holiday calls?',
+    answer:
+      'No. Unlike large plumbing companies that charge double or triple for weekend and holiday service, we charge the same fair rate 24/7/365. Being available when you need us is part of our commitment to Chicago homeowners.',
+  },
+];
+
+const faqSchema = faqPageSchema(faqs);
+---
+
+<PageLayout
+  title="Plumbing FAQs — Sandoval Plumbing Chicago"
+  description="Answers to common plumbing questions from Sandoval Plumbing, Chicago's 24/7 family plumber."
+  schema={faqSchema}
+>
+  <section class="py-16 md:py-24 bg-gradient-to-br from-brand-blue/5 to-brand-lightgray">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-heading font-bold text-brand-blue text-center mb-4">
+        Frequently Asked Questions
+      </h1>
+      <p class="text-gray-600 text-center text-lg mb-12 max-w-xl mx-auto">
+        Everything you need to know about Sandoval Plumbing and our services.
+      </p>
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+        <FAQAccordion client:visible faqs={faqs} />
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-gray-600 mb-4">Still have questions? We're here to help.</p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 bg-brand-blue text-white font-bold px-8 py-3.5 rounded-lg hover:opacity-90 transition shadow-md"
+        >
+          Contact Us
+        </a>
+      </div>
+
+      <div class="mt-8">
+        <EmergencyCTA compact />
+      </div>
+    </div>
+  </section>
+</PageLayout>
