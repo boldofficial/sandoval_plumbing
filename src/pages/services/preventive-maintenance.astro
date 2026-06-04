@@ -1,4 +1,5 @@
 ---
+import { Flower2, Sun, Leaf, Snowflake, Star } from 'lucide-react';
 import { Image } from 'astro:assets';
 import serviceHero from '../../assets/hero-placeholder.jpg';
 import ServiceLayout from '../../layouts/ServiceLayout.astro';
@@ -96,7 +97,9 @@ const faqs = [
   </h2>
   <div class="grid grid-cols-2 gap-4 mb-8">
     <div class="bg-green-50 rounded-lg p-4">
-      <h4 class="font-heading font-bold text-green-800 text-sm mb-2">🌸 Spring</h4>
+      <h4 class="font-heading font-bold text-green-800 text-sm mb-2 flex items-center gap-1.5">
+        <Flower2 size={16} aria-hidden="true" /> Spring
+      </h4>
       <ul class="text-xs text-gray-600 space-y-1">
         <li>• Inspect for winter pipe damage</li>
         <li>• Test sump pump</li>
@@ -104,7 +107,9 @@ const faqs = [
       </ul>
     </div>
     <div class="bg-yellow-50 rounded-lg p-4">
-      <h4 class="font-heading font-bold text-yellow-800 text-sm mb-2">☀️ Summer</h4>
+      <h4 class="font-heading font-bold text-yellow-800 text-sm mb-2 flex items-center gap-1.5">
+        <Sun size={16} aria-hidden="true" /> Summer
+      </h4>
       <ul class="text-xs text-gray-600 space-y-1">
         <li>• Check outdoor faucets</li>
         <li>• Inspect irrigation systems</li>
@@ -112,7 +117,9 @@ const faqs = [
       </ul>
     </div>
     <div class="bg-orange-50 rounded-lg p-4">
-      <h4 class="font-heading font-bold text-orange-800 text-sm mb-2">🍂 Fall</h4>
+      <h4 class="font-heading font-bold text-orange-800 text-sm mb-2 flex items-center gap-1.5">
+        <Leaf size={16} aria-hidden="true" /> Fall
+      </h4>
       <ul class="text-xs text-gray-600 space-y-1">
         <li>• Insulate exposed pipes</li>
         <li>• Drain outdoor hoses</li>
@@ -120,7 +127,9 @@ const faqs = [
       </ul>
     </div>
     <div class="bg-blue-50 rounded-lg p-4">
-      <h4 class="font-heading font-bold text-blue-800 text-sm mb-2">❄️ Winter</h4>
+      <h4 class="font-heading font-bold text-blue-800 text-sm mb-2 flex items-center gap-1.5">
+        <Snowflake size={16} aria-hidden="true" /> Winter
+      </h4>
       <ul class="text-xs text-gray-600 space-y-1">
         <li>• Monitor for frozen pipes</li>
         <li>• Check for drafts near pipes</li>
@@ -132,15 +141,39 @@ const faqs = [
   <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Why Choose Sandoval</h2>
   <ul class="space-y-2 text-gray-600 mb-8">
     <li class="flex items-start gap-2">
-      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <svg
+        class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        ><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"
+        ></path></svg
+      >
       <span>Catch issues before they become expensive emergencies</span>
     </li>
     <li class="flex items-start gap-2">
-      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <svg
+        class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        ><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"
+        ></path></svg
+      >
       <span>Extend the life of your water heater and fixtures</span>
     </li>
     <li class="flex items-start gap-2">
-      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <svg
+        class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        ><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"
+        ></path></svg
+      >
       <span>Lower water bills by fixing hidden leaks</span>
     </li>
   </ul>
@@ -160,8 +193,8 @@ const faqs = [
     reviewQuote && (
       <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
         <div class="flex items-start gap-3">
-          <span class="text-3xl shrink-0" aria-hidden="true">
-            ⭐
+          <span class="shrink-0" aria-hidden="true">
+            <Star size={28} class="text-yellow-400" fill="currentColor" />
           </span>
           <div>
             <p class="text-gray-600 italic leading-relaxed mb-3">
@@ -175,13 +208,31 @@ const faqs = [
                 class="text-yellow-400 text-sm"
                 aria-label={`${reviewQuote.data.rating} out of 5 stars`}
               >
-                {'★'.repeat(reviewQuote.data.rating)}
+                {Array.from({ length: reviewQuote.data.rating }, (_, i) => (
+                  <Star key={i} size={16} class="text-yellow-400" fill="currentColor" />
+                ))}
               </span>
               <span class="text-xs text-gray-400">
                 {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
               </span>
               {reviewQuote.data.verified && (
-                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+                <span class="text-green-600 text-xs font-medium flex items-center gap-1">
+                  <svg
+                    class="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Verified
+                </span>
               )}
             </div>
           </div>
