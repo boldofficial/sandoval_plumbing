@@ -125,9 +125,17 @@ export default function ContactForm() {
           >
             (773) 610-3344
           </a>{' '}
+          or{' '}
+          <a
+            href="tel:+13127238993"
+            className="font-bold underline text-green-900 hover:text-green-700"
+          >
+            (312) 723-8993
+          </a>{' '}
           — available 24/7.
         </p>
         <button
+          type="button"
           onClick={() => {
             setStatus('idle');
             setForm(initialForm);
@@ -312,7 +320,12 @@ export default function ContactForm() {
       <p className="text-xs text-gray-400 text-center">
         ⚡ We typically respond within 60 minutes. For emergencies, call{' '}
         <a href="tel:+17736103344" className="text-brand-blue underline">
+          {' '}
           (773) 610-3344
+        </a>{' '}
+        or{' '}
+        <a href="tel:+13127238993" className="text-brand-blue underline">
+          (312) 723-8993
         </a>
         .
       </p>
