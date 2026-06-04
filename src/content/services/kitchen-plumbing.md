@@ -2,7 +2,7 @@
 title: 'Kitchen Plumbing'
 slug: 'kitchen-plumbing'
 description: 'Kitchen plumbing services in Chicago. Faucets, disposals, dishwashers, and complete kitchen plumbing.'
-icon: '🍽️'
+icon: 'UtensilsCrossed'
 order: 7
 emergency: false
 ---
