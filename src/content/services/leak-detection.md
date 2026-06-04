@@ -2,7 +2,7 @@
 title: 'Leak Detection & Repair'
 slug: 'leak-detection'
 description: 'Professional leak detection in Chicago. We find hidden water leaks without damaging your walls or floors.'
-icon: '🔍'
+icon: 'Search'
 order: 4
 emergency: true
 ---
