@@ -1,4 +1,5 @@
 ---
+import { Star } from 'lucide-react';
 import PageLayout from '../layouts/PageLayout.astro';
 import ReviewCard from '../components/ui/ReviewCard.astro';
 import EmergencyCTA from '../components/ui/EmergencyCTA.astro';
@@ -30,7 +31,13 @@ const reviews = allReviews.sort((a, b) => b.date.valueOf() - a.date.valueOf());
           <div class="w-px h-12 bg-gray-200 hidden sm:block"></div>
           <div class="text-center">
             <div class="text-3xl font-bold text-brand-blue">5.0</div>
-            <div class="flex text-yellow-400 text-sm justify-center my-1">★★★★★</div>
+            <div class="flex text-yellow-400 text-sm justify-center my-1" aria-label="5 stars">
+              <Star size={16} fill="currentColor" />
+              <Star size={16} fill="currentColor" />
+              <Star size={16} fill="currentColor" />
+              <Star size={16} fill="currentColor" />
+              <Star size={16} fill="currentColor" />
+            </div>
             <div class="text-xs text-gray-500">Yelp · 16 Reviews</div>
           </div>
         </div>
