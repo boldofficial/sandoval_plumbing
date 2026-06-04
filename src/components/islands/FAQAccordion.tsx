@@ -23,6 +23,7 @@ export default function FAQAccordion({ faqs }: Props) {
         return (
           <div key={i} className="py-1">
             <button
+              type="button"
               id={`faq-btn-${i}`}
               onClick={() => toggle(i)}
               className="w-full text-left py-4 pr-4 flex justify-between items-center gap-4 font-semibold text-brand-blue hover:text-brand-red transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-inset rounded"
