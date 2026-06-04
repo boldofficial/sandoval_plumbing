@@ -2,7 +2,7 @@
 title: 'Sewer Line Services'
 slug: 'sewer-line'
 description: 'Sewer line repair and replacement in Chicago. Camera inspection, hydro-jetting, and trenchless repair.'
-icon: '🔧'
+icon: 'Wrench'
 order: 5
 emergency: true
 ---
