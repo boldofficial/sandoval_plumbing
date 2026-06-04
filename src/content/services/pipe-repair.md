@@ -2,7 +2,7 @@
 title: 'Pipe Repair & Replacement'
 slug: 'pipe-repair'
 description: 'Pipe repair and replacement in Chicago. Old pipes, frozen pipes, and emergency pipe bursts.'
-icon: '🔗'
+icon: 'Link'
 order: 8
 emergency: true
 ---
