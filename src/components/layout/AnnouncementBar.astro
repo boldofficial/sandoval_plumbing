@@ -1,11 +1,14 @@
+---
+import { AlertTriangle } from 'lucide-react';
+---
+
 <div class="bg-brand-red text-white text-center text-sm md:text-base font-semibold py-2 px-4">
   <a
     href="tel:+17736103344"
-    class="block md:inline hover:underline"
+    class="block md:inline hover:underline flex items-center justify-center gap-1.5"
     aria-label="Call Sandoval Plumbing 24/7 at (773) 610-3344"
   >
-    🚨 Plumbing Emergency? We're Available 24/7 — <span class="underline font-bold"
-      >Call (773) 610-3344 Now</span
-    >
+    <AlertTriangle size={16} class="inline shrink-0" aria-hidden="true" /> Plumbing Emergency? We're Available
+    24/7 — <span class="underline font-bold">Call (773) 610-3344 Now</span>
   </a>
 </div>
