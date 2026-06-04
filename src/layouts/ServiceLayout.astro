@@ -1,4 +1,5 @@
 ---
+import { Phone, Clock } from 'lucide-react';
 import PageLayout from './PageLayout.astro';
 import EmergencyCTA from '../components/ui/EmergencyCTA.astro';
 
@@ -32,27 +33,93 @@ const { serviceName, ...layoutProps } = Astro.props;
           <h3 class="font-heading font-bold text-brand-blue text-lg mb-4">Why Choose Sandoval</h3>
           <ul class="space-y-3 text-sm">
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              >
               <span>Licensed &amp; Insured in Illinois</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              >
               <span>24/7 Emergency Service — Every Day</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              >
               <span>Family-Owned 25+ Years</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              >
               <span>Free Estimates &amp; Fair Pricing</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              >
               <span>4.9 Stars &middot; 300+ Google Reviews</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              >
               <span>Hispanic-Owned &middot; Servicio en Español</span>
             </li>
           </ul>
@@ -66,11 +133,11 @@ const { serviceName, ...layoutProps } = Astro.props;
               href="tel:+17736103344"
               class="flex items-center gap-2 font-bold hover:text-brand-red transition-colors"
             >
-              <span aria-hidden="true">📞</span>
+              <Phone size={16} aria-hidden="true" />
               (773) 610-3344
             </a>
             <p class="flex items-start gap-2 text-gray-200">
-              <span class="mt-0.5 shrink-0" aria-hidden="true">🕐</span>
+              <Clock size={16} class="mt-0.5 shrink-0 text-gray-300" aria-hidden="true" />
               <span>Open 24/7 — including weekends &amp; holidays</span>
             </p>
             <a
