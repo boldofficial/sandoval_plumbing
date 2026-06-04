@@ -2,7 +2,7 @@
 title: 'Emergency Plumbing'
 slug: 'emergency-plumbing'
 description: "24/7 emergency plumbing in Chicago. Burst pipes, sewage backup, gas leaks — we're there within 60 minutes."
-icon: '🚨'
+icon: 'AlertTriangle'
 order: 1
 emergency: true
 ---
