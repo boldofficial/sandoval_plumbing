@@ -6,9 +6,10 @@ interface Props {
   text: string;
   verified?: boolean;
   date?: string;
+  sourceUrl?: string;
 }
 
-const { reviewer, rating, platform, text, verified = true, date } = Astro.props;
+const { reviewer, rating, platform, text, verified = true, date, sourceUrl } = Astro.props;
 
 const platformIcons: Record<string, string> = {
   google: 'G',
@@ -20,6 +21,12 @@ const platformColors: Record<string, string> = {
   google: 'text-blue-600',
   yelp: 'text-red-600',
   other: 'text-yellow-500',
+};
+
+const sourceLabels: Record<string, string> = {
+  google: 'Google',
+  yelp: 'Yelp',
+  other: '',
 };
 ---
 
@@ -45,20 +52,34 @@ const platformColors: Record<string, string> = {
   <p class="text-gray-600 text-sm leading-relaxed flex-1 italic">"{text}"</p>
 
   {/* Reviewer info */}
-  <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <span class="font-semibold text-gray-800 text-sm">{reviewer}</span>
-      {
-        verified && (
-          <span class="text-green-600 text-xs font-medium" title="Verified review">
-            ✅ Verified
-          </span>
-        )
-      }
+  <div class="mt-4 pt-4 border-t border-gray-100">
+    <div class="flex items-center justify-between mb-2">
+      <div class="flex items-center gap-2">
+        <span class="font-semibold text-gray-800 text-sm">{reviewer}</span>
+        {
+          verified && (
+            <span class="text-green-600 text-xs font-medium" title="Verified review">
+              ✅ Verified
+            </span>
+          )
+        }
+      </div>
+      <span class={`text-xs font-bold ${platformColors[platform]}`}>
+        {platformIcons[platform]}
+        {sourceLabels[platform]}
+      </span>
     </div>
-    <span class={`text-xs font-bold ${platformColors[platform]}`}>
-      {platformIcons[platform]}
-      {platform === 'google' ? 'Google' : platform === 'yelp' ? 'Yelp' : ''}
-    </span>
+    {
+      sourceUrl && (
+        <a
+          href={sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 text-xs text-brand-red hover:text-red-700 font-semibold transition-colors"
+        >
+          Read full review on {sourceLabels[platform] || 'the source'} →
+        </a>
+      )
+    }
   </div>
 </div>
