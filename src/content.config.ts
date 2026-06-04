@@ -15,17 +15,6 @@ const blog = defineCollection({
   }),
 });
 
-const reviews = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/reviews' }),
-  schema: z.object({
-    reviewer: z.string(),
-    rating: z.number().min(1).max(5),
-    platform: z.enum(['google', 'yelp', 'other']),
-    date: z.date(),
-    verified: z.boolean().default(true),
-  }),
-});
-
 const services = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/services' }),
   schema: z.object({
@@ -38,4 +27,4 @@ const services = defineCollection({
   }),
 });
 
-export const collections = { blog, reviews, services };
+export const collections = { blog, services };
