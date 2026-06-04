@@ -2,7 +2,7 @@
 title: 'Gas Line Services'
 slug: 'gas-line'
 description: 'Gas line repair, installation, and bonding in Chicago. Licensed and insured for all gas work.'
-icon: '⛽'
+icon: 'Flame'
 order: 9
 emergency: true
 ---
