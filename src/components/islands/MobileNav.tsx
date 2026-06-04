@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Phone, Globe, ClipboardList } from 'lucide-react';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -80,7 +81,7 @@ export default function MobileNav() {
                 href="tel:+17736103344"
                 className="block w-full text-center bg-brand-red text-white font-bold py-3 px-4 rounded-lg mb-2 hover:opacity-90 transition"
               >
-                📞 Call (773) 610-3344
+                <Phone size={18} className="inline" aria-hidden="true" /> Call (773) 610-3344
               </a>
               <a
                 href="tel:+13127238993"
@@ -92,13 +93,13 @@ export default function MobileNav() {
                 href="/contact"
                 className="block w-full text-center bg-brand-blue text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition"
               >
-                📋 Free Estimate
+                <ClipboardList size={18} className="inline" aria-hidden="true" /> Free Estimate
               </a>
               <a
                 href="/es"
                 className="block w-full text-center mt-3 text-sm text-gray-500 hover:text-brand-blue transition-colors"
               >
-                🌎 Español
+                <Globe size={16} className="inline" aria-hidden="true" /> Español
               </a>
             </div>
           </nav>
