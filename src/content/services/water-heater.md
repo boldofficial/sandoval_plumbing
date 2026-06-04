@@ -2,7 +2,7 @@
 title: 'Water Heater Repair & Installation'
 slug: 'water-heater'
 description: 'Water heater repair and installation in Chicago. Tank, tankless, and hybrid systems from top brands.'
-icon: '🔥'
+icon: 'Thermometer'
 order: 3
 emergency: true
 ---
