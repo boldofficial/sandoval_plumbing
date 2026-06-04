@@ -55,6 +55,7 @@ export default function ExitIntentPopup() {
       <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 md:p-10 text-center animate-[fadeInUp_0.3s_ease-out]">
         {/* Close button */}
         <button
+          type="button"
           onClick={dismiss}
           className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors"
           aria-label="Close popup"
@@ -106,11 +107,19 @@ export default function ExitIntentPopup() {
             className="font-bold text-brand-blue hover:text-brand-red transition-colors"
           >
             (773) 610-3344
+          </a>{' '}
+          /{' '}
+          <a
+            href="tel:+13127238993"
+            className="font-bold text-brand-blue hover:text-brand-red transition-colors"
+          >
+            (312) 723-8993
           </a>
         </p>
 
         {/* Dismiss text */}
         <button
+          type="button"
           onClick={dismiss}
           className="mt-4 text-xs text-gray-400 hover:text-gray-600 underline transition-colors"
         >
