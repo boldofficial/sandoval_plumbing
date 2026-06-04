@@ -1,4 +1,5 @@
 ---
+import { Star } from 'lucide-react';
 import { Image } from 'astro:assets';
 import serviceHero from '../../assets/hero-placeholder.jpg';
 import ServiceLayout from '../../layouts/ServiceLayout.astro';
@@ -107,15 +108,39 @@ const faqs = [
   <h2 class="text-2xl font-heading font-bold text-brand-blue mb-4">Why Choose Sandoval</h2>
   <ul class="space-y-2 text-gray-600 mb-8">
     <li class="flex items-start gap-2">
-      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <svg
+        class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        ><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"
+        ></path></svg
+      >
       <span>Emergency pipe repair — 60-minute response time</span>
     </li>
     <li class="flex items-start gap-2">
-      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <svg
+        class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        ><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"
+        ></path></svg
+      >
       <span>Experience with Chicago's older pipe materials</span>
     </li>
     <li class="flex items-start gap-2">
-      <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span>
+      <svg
+        class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        ><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"
+        ></path></svg
+      >
       <span>Modern materials (PEX) for freeze-resistant plumbing</span>
     </li>
   </ul>
@@ -133,8 +158,8 @@ const faqs = [
     reviewQuote && (
       <div class="bg-brand-lightgray rounded-xl p-6 md:p-8 mb-8 border-l-4 border-brand-red">
         <div class="flex items-start gap-3">
-          <span class="text-3xl shrink-0" aria-hidden="true">
-            ⭐
+          <span class="shrink-0" aria-hidden="true">
+            <Star size={28} class="text-yellow-400" fill="currentColor" />
           </span>
           <div>
             <p class="text-gray-600 italic leading-relaxed mb-3">
@@ -148,13 +173,31 @@ const faqs = [
                 class="text-yellow-400 text-sm"
                 aria-label={`${reviewQuote.data.rating} out of 5 stars`}
               >
-                {'★'.repeat(reviewQuote.data.rating)}
+                {Array.from({ length: reviewQuote.data.rating }, (_, i) => (
+                  <Star key={i} size={16} class="text-yellow-400" fill="currentColor" />
+                ))}
               </span>
               <span class="text-xs text-gray-400">
                 {reviewQuote.data.platform === 'google' ? 'Google Review' : 'Yelp Review'}
               </span>
               {reviewQuote.data.verified && (
-                <span class="text-green-600 text-xs font-medium">✅ Verified</span>
+                <span class="text-green-600 text-xs font-medium flex items-center gap-1">
+                  <svg
+                    class="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Verified
+                </span>
               )}
             </div>
           </div>
