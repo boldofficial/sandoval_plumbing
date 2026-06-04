@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import heroImage from '../../assets/hero-placeholder.jpg';
-import eddiePhoto from '../../assets/eddie-placeholder.jpg';
+import { Wrench, DollarSign, AlarmClock, Globe, Phone, Zap } from 'lucide-react';
 import PageLayout from '../../layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 import TrustBadges from '../../components/ui/TrustBadges.astro';
@@ -64,7 +64,7 @@ const neighborhoods = [
         <span
           class="inline-flex items-center gap-1 bg-white/20 text-white text-sm font-semibold px-3 py-1 rounded-full mb-6"
         >
-          🔧 Propiedad Familiar Desde 1999
+          <Wrench size={16} class="inline" aria-hidden="true" /> Propiedad Familiar Desde 1999
         </span>
         <h1
           class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight"
@@ -113,7 +113,7 @@ const neighborhoods = [
             href="tel:+17736103344"
             class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-red text-white px-8 py-4 rounded-lg text-lg font-bold hover:opacity-90 transition shadow-lg"
           >
-            <span aria-hidden="true">📞</span> Llame Ahora: (773) 610-3344
+            <Phone size={18} aria-hidden="true" /> Llame Ahora: (773) 610-3344
           </a>
           <a
             href="/contact"
@@ -122,7 +122,8 @@ const neighborhoods = [
           >
         </div>
         <p class="mt-6 text-sm text-gray-300 flex items-center gap-1.5">
-          <span aria-hidden="true">⚡</span> Le devolvemos la llamada en menos de 60 minutos
+          <Zap size={16} class="inline" aria-hidden="true" /> Le devolvemos la llamada en menos de 60
+          minutos
         </p>
       </div>
     </div>
@@ -145,7 +146,9 @@ const neighborhoods = [
         <div
           class="text-center p-8 rounded-xl bg-brand-lightgray hover:shadow-md transition-shadow"
         >
-          <div class="text-4xl mb-4" aria-hidden="true">👨‍🔧</div>
+          <div class="mb-4 flex justify-center">
+            <Wrench size={36} class="text-brand-blue" aria-hidden="true" />
+          </div>
           <h3 class="font-heading font-bold text-brand-blue text-xl mb-3">Eddie Hace el Trabajo</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
             Cuando llama a Sandoval, habla directamente con Eddie — no con un operador ni un
@@ -155,7 +158,9 @@ const neighborhoods = [
         <div
           class="text-center p-8 rounded-xl bg-brand-lightgray hover:shadow-md transition-shadow"
         >
-          <div class="text-4xl mb-4" aria-hidden="true">💰</div>
+          <div class="mb-4 flex justify-center">
+            <DollarSign size={36} class="text-brand-blue" aria-hidden="true" />
+          </div>
           <h3 class="font-heading font-bold text-brand-blue text-xl mb-3">
             Precios Justos y Transparentes
           </h3>
@@ -167,7 +172,9 @@ const neighborhoods = [
         <div
           class="text-center p-8 rounded-xl bg-brand-lightgray hover:shadow-md transition-shadow"
         >
-          <div class="text-4xl mb-4" aria-hidden="true">⏰</div>
+          <div class="mb-4 flex justify-center">
+            <AlarmClock size={36} class="text-brand-blue" aria-hidden="true" />
+          </div>
           <h3 class="font-heading font-bold text-brand-blue text-xl mb-3">Disponible 24/7</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
             Noches, fines de semana y días festivos — nunca cerramos. Mientras otros le cobran el
@@ -292,11 +299,9 @@ const neighborhoods = [
     <div class="max-w-7xl mx-auto px-4">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="aspect-[4/3] rounded-xl overflow-hidden relative">
-          <Image
-            src={eddiePhoto}
+          <img
+            src="/eddie.jpg"
             alt="Eduardo 'Eddie' Sandoval, propietario y plomero principal de Sandoval Plumbing — más de 25 años sirviendo a Chicago"
-            width={600}
-            height={750}
             class="w-full h-full object-cover"
             loading="lazy"
           />
@@ -384,7 +389,9 @@ const neighborhoods = [
   <!-- L. BILINGUAL CTA -->
   <section class="py-12 md:py-16 bg-brand-blue">
     <div class="max-w-3xl mx-auto px-4 text-center">
-      <div class="text-4xl mb-4" aria-hidden="true">🌎</div>
+      <div class="mb-4 flex justify-center">
+        <Globe size={40} class="text-white/80" aria-hidden="true" />
+      </div>
       <h2 class="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
         ¿Prefiere el Inglés?
       </h2>
@@ -401,7 +408,8 @@ const neighborhoods = [
         <a
           href="tel:+17736103344"
           class="inline-flex items-center gap-2 text-white font-bold hover:underline"
-          >📞 (773) 610-3344</a
+        >
+          <Phone size={16} aria-hidden="true" /> (773) 610-3344</a
         >
       </div>
     </div>
