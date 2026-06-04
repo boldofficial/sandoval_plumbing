@@ -1,4 +1,6 @@
 ---
+import { MapPin, Phone, Smartphone, Clock, Star } from 'lucide-react';
+
 const neighborhoods = [
   'Irving Park',
   'Logan Square',
@@ -33,7 +35,7 @@ const quickLinks = [
       {/* Column 1: Business Info */}
       <div>
         <div class="flex items-center gap-2 mb-4">
-          <span class="text-2xl" aria-hidden="true">🔧</span>
+          <img src="/logo.jpg" alt="" class="h-10 md:h-12 w-auto" width="180" height="48" />
           <div>
             <h3 class="font-heading font-bold text-lg leading-tight">
               Sandoval <span class="text-brand-red">Plumbing</span>
@@ -45,7 +47,7 @@ const quickLinks = [
         </p>
         <div class="space-y-2 text-sm">
           <div class="flex items-start gap-2">
-            <span class="mt-0.5 shrink-0" aria-hidden="true">📍</span>
+            <MapPin size={16} class="mt-0.5 shrink-0 text-gray-400" aria-hidden="true" />
             <span class="text-gray-300">
               3922 N Bernard St<br />
               Chicago, IL 60618
@@ -56,27 +58,27 @@ const quickLinks = [
               href="tel:+17736103344"
               class="flex items-center gap-2 text-white font-bold hover:text-brand-red transition-colors"
             >
-              <span aria-hidden="true">📞</span>
+              <Phone size={16} aria-hidden="true" />
               (773) 610-3344
             </a>
             <a
               href="tel:+13127238993"
               class="flex items-center gap-2 text-white hover:text-brand-red transition-colors text-sm mt-1"
             >
-              <span aria-hidden="true">📱</span>
+              <Smartphone size={16} aria-hidden="true" />
               (312) 723-8993
               <span class="text-gray-400 text-xs">(Alt)</span>
             </a>
           </div>
           <div class="flex items-start gap-2">
-            <span class="mt-0.5 shrink-0" aria-hidden="true">🕐</span>
+            <Clock size={16} class="mt-0.5 shrink-0 text-gray-400" aria-hidden="true" />
             <span class="text-gray-300">
               Open 24 Hours, 7 Days a Week<br />
               <span class="text-xs italic">Including nights, weekends & holidays</span>
             </span>
           </div>
           <div class="flex items-start gap-2">
-            <span class="mt-0.5 shrink-0" aria-hidden="true">⭐</span>
+            <Star size={16} class="mt-0.5 shrink-0 text-yellow-400" aria-hidden="true" />
             <span class="text-gray-300"> 4.9 Stars &middot; 300+ Google Reviews </span>
           </div>
         </div>
