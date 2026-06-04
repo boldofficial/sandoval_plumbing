@@ -5,7 +5,7 @@ export function localBusinessSchema() {
     '@context': 'https://schema.org',
     '@type': 'Plumber',
     name: 'Sandoval Plumbing',
-    telephone: '+17736103344',
+    telephone: ['+17736103344', '+13127238993'],
     address: {
       '@type': 'PostalAddress',
       streetAddress: '3922 N Bernard St',
