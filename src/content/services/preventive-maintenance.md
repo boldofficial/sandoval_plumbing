@@ -2,7 +2,7 @@
 title: 'Preventive Maintenance'
 slug: 'preventive-maintenance'
 description: 'Plumbing preventive maintenance in Chicago. Annual inspections, drain cleaning, and water heater maintenance.'
-icon: '✅'
+icon: 'ShieldCheck'
 order: 10
 emergency: false
 ---
