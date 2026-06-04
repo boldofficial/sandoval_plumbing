@@ -16,6 +16,7 @@ export default function MobileNav() {
     <div className="md:hidden">
       {/* Hamburger button */}
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="p-2 text-brand-blue hover:text-brand-red transition-colors"
         aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -77,9 +78,15 @@ export default function MobileNav() {
             <div className="mt-6 pt-6 border-t border-gray-200">
               <a
                 href="tel:+17736103344"
-                className="block w-full text-center bg-brand-red text-white font-bold py-3 px-4 rounded-lg mb-3 hover:opacity-90 transition"
+                className="block w-full text-center bg-brand-red text-white font-bold py-3 px-4 rounded-lg mb-2 hover:opacity-90 transition"
               >
                 📞 Call (773) 610-3344
+              </a>
+              <a
+                href="tel:+13127238993"
+                className="block w-full text-center text-sm text-gray-500 hover:text-brand-red font-medium py-1.5 mb-3 transition-colors"
+              >
+                Alt: (312) 723-8993
               </a>
               <a
                 href="/contact"
