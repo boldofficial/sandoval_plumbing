@@ -2,7 +2,7 @@
 title: 'Drain Cleaning'
 slug: 'drain-cleaning'
 description: 'Professional drain cleaning in Chicago. Hydro-jetting, rodding, and camera inspection for stubborn clogs.'
-icon: '🔄'
+icon: 'RefreshCw'
 order: 2
 emergency: false
 ---
