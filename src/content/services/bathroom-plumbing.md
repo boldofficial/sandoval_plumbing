@@ -2,7 +2,7 @@
 title: 'Bathroom Plumbing'
 slug: 'bathroom-plumbing'
 description: 'Full bathroom plumbing services in Chicago. Toilets, sinks, showers, tubs, and complete bathroom remodels.'
-icon: '🚿'
+icon: 'Droplets'
 order: 6
 emergency: false
 ---
