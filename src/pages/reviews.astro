@@ -2,11 +2,9 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import ReviewCard from '../components/ui/ReviewCard.astro';
 import EmergencyCTA from '../components/ui/EmergencyCTA.astro';
-import { getCollection } from 'astro:content';
+import { reviews as allReviews } from '../data/reviews';
 
-const reviews = (await getCollection('reviews')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const reviews = allReviews.sort((a, b) => b.date.valueOf() - a.date.valueOf());
 ---
 
 <PageLayout
@@ -42,16 +40,17 @@ const reviews = (await getCollection('reviews')).sort(
         {
           reviews.map((review) => (
             <ReviewCard
-              reviewer={review.data.reviewer}
-              rating={review.data.rating}
-              platform={review.data.platform}
-              text={review.body}
-              verified={review.data.verified}
-              date={review.data.date.toLocaleDateString('en-US', {
+              reviewer={review.reviewer}
+              rating={review.rating}
+              platform={review.platform}
+              text={review.text}
+              verified={review.verified}
+              date={review.date.toLocaleDateString('en-US', {
                 month: 'short',
                 day: 'numeric',
                 year: 'numeric',
               })}
+              sourceUrl={review.sourceUrl}
             />
           ))
         }
