@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Wrench } from 'lucide-react';
 
 export default function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -77,7 +78,11 @@ export default function ExitIntentPopup() {
         </button>
 
         {/* Icon */}
-        <div className="text-5xl mb-4">🔧</div>
+        <div className="mb-4 flex justify-center">
+          <div className="w-16 h-16 rounded-full bg-brand-red/10 flex items-center justify-center">
+            <Wrench size={32} className="text-brand-red" />
+          </div>
+        </div>
 
         {/* Heading */}
         <h2 className="text-2xl md:text-3xl font-bold text-brand-blue font-heading mb-3">
