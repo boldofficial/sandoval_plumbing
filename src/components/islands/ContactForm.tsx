@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { Zap } from 'lucide-react';
 
 type ServiceType =
   | 'emergency'
@@ -115,7 +116,24 @@ export default function ContactForm() {
   if (status === 'success') {
     return (
       <div className="bg-green-50 border border-green-200 rounded-xl p-6 md:p-8 text-center">
-        <div className="text-4xl mb-4">✅</div>
+        <div className="mb-4 flex justify-center">
+          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+            <svg
+              className="w-8 h-8 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+        </div>
         <h3 className="text-xl font-bold text-green-800 font-heading">Request Received!</h3>
         <p className="text-green-700 mt-2 leading-relaxed">
           We'll call you back within 60 minutes. For immediate emergencies, call{' '}
@@ -318,7 +336,8 @@ export default function ContactForm() {
       </button>
 
       <p className="text-xs text-gray-400 text-center">
-        ⚡ We typically respond within 60 minutes. For emergencies, call{' '}
+        <Zap size={12} className="inline -mt-0.5 text-yellow-500" aria-hidden="true" /> We typically
+        respond within 60 minutes. For emergencies, call{' '}
         <a href="tel:+17736103344" className="text-brand-blue underline">
           {' '}
           (773) 610-3344
