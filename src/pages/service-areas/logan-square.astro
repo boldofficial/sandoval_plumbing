@@ -1,4 +1,5 @@
 ---
+import { Phone, MapPin, Clock } from 'lucide-react';
 import PageLayout from '../../layouts/PageLayout.astro';
 import EmergencyCTA from '../../components/ui/EmergencyCTA.astro';
 import ServiceAreaMap from '../../components/ui/ServiceAreaMap.astro';
@@ -26,24 +27,88 @@ import ContactForm from '../../components/islands/ContactForm';
           </h2>
           <ul class="space-y-2 text-sm text-gray-600">
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Emergency Plumbing — 24/7
-              Response
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              > Emergency Plumbing — 24/7 Response
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Drain Cleaning &amp; Hydro-Jetting
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              > Drain Cleaning &amp; Hydro-Jetting
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Water Heater Repair &amp;
-              Installation
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              > Water Heater Repair &amp; Installation
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Sewer Line Services
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              > Sewer Line Services
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Bathroom &amp; Kitchen Plumbing
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              > Bathroom &amp; Kitchen Plumbing
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold shrink-0 mt-0.5">✓</span> Servicio en Español
+              <svg
+                class="w-4 h-4 text-green-600 shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"></path></svg
+              > Servicio en Español
             </li>
           </ul>
         </div>
@@ -53,14 +118,14 @@ import ContactForm from '../../components/islands/ContactForm';
             <a
               href="tel:+17736103344"
               class="flex items-center gap-2 font-bold hover:text-brand-red transition-colors"
-              ><span aria-hidden="true">📞</span> (773) 610-3344</a
+              ><Phone size={16} aria-hidden="true" /> (773) 610-3344</a
             >
             <p class="flex items-start gap-2 text-gray-200">
-              <span class="mt-0.5" aria-hidden="true">📍</span>
+              <MapPin size={16} class="mt-0.5 shrink-0" aria-hidden="true" />
               <span>Serving Logan Square (60647) and all of Chicagoland</span>
             </p>
             <p class="flex items-start gap-2 text-gray-200">
-              <span class="mt-0.5" aria-hidden="true">🕐</span>
+              <Clock size={16} class="mt-0.5 shrink-0" aria-hidden="true" />
               <span>Available 24/7 — including holidays</span>
             </p>
             <a
