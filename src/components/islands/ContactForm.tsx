@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useRef, type FormEvent } from 'react';
 import { Zap } from 'lucide-react';
 
 type ServiceType =
@@ -44,6 +44,8 @@ export default function ContactForm() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [status, setStatus] = useState<Status>('idle');
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
+  const [serverError, setServerError] = useState('');
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   function validate(): boolean {
     const newErrors: Partial<Record<keyof FormState, string>> = {};
@@ -88,28 +90,32 @@ export default function ContactForm() {
     e.preventDefault();
     if (!validate()) return;
 
+    setServerError('');
     setStatus('submitting');
 
     try {
-      // Submit to Netlify Forms (add data-netlify="true" to form element)
-      const formData = new FormData();
-      Object.entries(form).forEach(([key, value]) => {
-        formData.append(key, value);
-      });
-      formData.append('form-name', 'contact');
+      const payload = {
+        ...form,
+        honeypot: honeypotRef.current?.value || '',
+      };
 
-      await fetch('/', {
+      const response = await fetch('/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(
-          Object.entries(form).map(([k, v]) => [k, v.toString()]),
-        ).toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
 
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error || 'Failed to submit form');
+      }
+
       setStatus('success');
-    } catch {
-      // Even if fetch fails (static build), show success — Netlify Forms captures it
-      setStatus('success');
+    } catch (err) {
+      setStatus('error');
+      setServerError(
+        err instanceof Error ? err.message : 'Something went wrong. Please try again or call us.',
+      );
     }
   }
 
@@ -174,8 +180,12 @@ export default function ContactForm() {
   const labelClass = 'block text-sm font-semibold text-gray-700 mb-1';
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5" data-netlify="true" name="contact">
-      <input type="hidden" name="form-name" value="contact" />
+    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+      {/* Honeypot — hidden from real users, traps spam bots */}
+      <div className="absolute -left-[9999px]" aria-hidden="true">
+        <label htmlFor="honeypot">Leave this empty</label>
+        <input id="honeypot" type="text" ref={honeypotRef} tabIndex={-1} autoComplete="off" />
+      </div>
 
       {/* Name */}
       <div>
@@ -299,6 +309,13 @@ export default function ContactForm() {
           ))}
         </div>
       </fieldset>
+
+      {/* Server error */}
+      {serverError && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-sm text-red-700">
+          {serverError}
+        </div>
+      )}
 
       {/* Submit */}
       <button
